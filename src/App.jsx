@@ -8,7 +8,7 @@ import {
 // import Project from './components/Project'
 import { LoginPage, RegisterPage } from './components/Auth'
 import Providers from './components/Providers'
-import ProjectPage from './components/pages/ProjectPage'
+import HomePage from './components/pages/HomePage'
 import { useLoggedInUser } from './hooks/useLoggedInUser'
 
 
@@ -18,10 +18,10 @@ const App = () => {
   return (
     <Providers>
       <Routes>
-        <Route path="/" element={<ProjectPage /> } />
+        <Route path="/" element={<HomePage /> } />
         <Route path="/login" element={<LoginPage/>} />
         <Route path="/register" element={<RegisterPage/> } />
-        <Route path="/project/*" element={ <ProjectPage />} />
+        <Route path="/project/*" element={ <HomePage />} />
       </Routes>
     </Providers>
     
