@@ -1,0 +1,101 @@
+{
+  "users": [
+      { 
+          "id": "1",
+          "username": "blelby",
+          "password": "123password"
+      },
+      { 
+          "id": "2",
+          "username": "dablinchie",
+          "password": "123password"
+      },
+      { 
+          "id": "3",
+          "username": "monkey",
+          "password": "123password"
+      }
+  ],
+  "projects": [
+      {
+          "id": "1",
+          "name": "summer work",
+          "lists": [
+              {
+                  "id": "1",
+                  "name": "household chores",
+                  "issues": [
+                      {
+                          "id": "1",
+                          "name": "clean room"
+
+                      },
+                      {
+                          "id": "2",
+                          "name": "do dishes"
+
+
+                  
+                      },
+                      {
+                          "id": "4",
+                          "name": "pay bills"
+
+                  
+                      }
+                  ]
+              },
+              {
+                  "id": "2",
+                  "name": "garage projects",
+                  "issues": [
+                      {
+                          "id": "3",
+                          "name": "fix weedwacker"
+                      },
+
+                      {
+                          "id": "5",
+                          "name": "fix truck exhaust rattle"
+                      }
+                  ]
+              },
+              {
+                  "id": "3",
+                  "name": "finished",
+                  "issues": []
+              }
+          ]
+      },
+      {
+          "id": "2",
+          "name": "programming",
+          "lists": [
+              {
+                  "id": "1",
+                  "name": "bugtracker project",
+                  "issues": [    
+                      {
+                          "id": "6",
+                          "name": "write frontend"
+                  
+                      },
+                      {
+                          "id": "7",
+                          "name": "write backend"
+                      },
+                      {
+                          "id": "8",
+                          "name": "implement users"
+                      }
+                  ]
+              },
+              {
+                  "id": "2",
+                  "name": "finished",
+                  "issues": []
+              }
+          ]
+      }
+  ]
+}
