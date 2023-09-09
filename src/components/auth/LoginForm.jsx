@@ -63,12 +63,10 @@ export const LoginForm = () => {
 
   const checkEmail = () => {
     if (validator.validate(email)){
-      console.log('is email')
       setEmailError(false)
       setEmailEntered(true)
       
     }else{
-      console.log('not email')
       setEmailError(true)
     }
   }

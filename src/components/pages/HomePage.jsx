@@ -1,7 +1,8 @@
 import { useEffect } from 'react'
 import { useNavigate , useParams } from 'react-router-dom'
 import { 
-  Box
+  Box,
+  Button
 } from '@mui/material'
 
 import { useStore } from '../../hooks/store'
@@ -25,19 +26,20 @@ const HomePage = () => {
   const navigate = useNavigate()
 
   const user = useStore((state) => state.user)
+  const fetchUser = useStore((state) => state.fetchUser)
 
   useEffect(() => {
-    console.log(user)
     if (user === null){
       navigate('/login')
     }
-  },[])
+  },[]) 
 
 return (
   <Box sx={pageStyle}>
     <Box sx={bodyStyle}>
-      user.username
+      {user && user.username}
     </Box>
+    <Button onClick={fetchUser}>Verify</Button>
   </Box>
   )
 }
