@@ -4,7 +4,9 @@ import {
   Box
 } from '@mui/material'
 
-import { useLoggedInUser } from 'hooks/useLoggedInUser'
+import { useStore } from '../../hooks/store'
+import authService from '../../services/auth'
+
 const pageStyle = {
   display: 'flex',
   flexDirection: 'column',
@@ -19,25 +21,25 @@ const bodyStyle = {
 
 }
 
-const ProjectPage = () => {
-  const user = useLoggedInUser()
+const HomePage = () => {
   const navigate = useNavigate()
-  
+
+  const user = useStore((state) => state.user)
+
   useEffect(() => {
+    console.log(user)
     if (user === null){
       navigate('/login')
     }
-  },[user])
+  },[])
 
 return (
   <Box sx={pageStyle}>
     <Box sx={bodyStyle}>
-      {user}
+      user.username
     </Box>
   </Box>
-
-
   )
 }
 
-export default ProjectPage
+export default HomePage

@@ -6,9 +6,9 @@ import validator from 'email-validator'
 import { ReactComponent as EditFilledIcon } from '@atlaskit/icon/svgs/edit-filled.svg'
 import { ReactComponent as WatchIcon } from '@atlaskit/icon/svgs/watch.svg'
 import { ReactComponent as WatchIconFilled } from '@atlaskit/icon/svgs/watch-filled.svg'
+import { useStore } from '../../hooks/store'
 
-
-
+import authService from '../../services/auth'
 
 import { 
   TextField,
@@ -32,13 +32,20 @@ export const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false)
   const [ passwordError, setPasswordError ] = useState(false)
 
-
+  
   const navigate = useNavigate()
   const passwordRef = useRef(null)
 
+
+  const fetchUser = useStore(state => state.fetchUser)
+  const login = useStore(state => state.login)
+  const user = useStore(state => state.user)
+
+
   const loginHandler = async () => {
+    await login(email, password)
   }
-  
+
   useEffect(() => {
     const timeout = setTimeout(() => {
       passwordRef.current.focus();

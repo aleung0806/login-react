@@ -1,11 +1,13 @@
 
 import { useState, useEffect } from 'react'
 import jiraLogo from 'icons/jira-logo.svg'
-
+import GoogleButton from '../auth/GoogleButton'
+import { useQuery } from 'react-query'
 import LoginForm from '../auth/LoginForm'
 import Footer from '../auth/Footer'
 
-
+import { useStore } from '../../hooks/store'
+import authService from '../../services/auth'
 import { 
   TextField,
   Input,
@@ -26,10 +28,21 @@ const style = {
 
 export const LoginPage = () => {
 
+  
   const [sent, setSent] = useState('')
   const navigate = useNavigate()
-  
-  const user = useLoggedInUser()
+
+  const user = useStore((state) => state.user)
+
+  const logout = () => {
+    authService.logout()
+  }
+
+  useEffect(() => {
+    if (user !== null){
+      navigate('/')
+    }
+  }, [user])
 
   return (
     <Box sx={style.page}>
@@ -40,6 +53,7 @@ export const LoginPage = () => {
               Log in to continue
           </Typography>
           <LoginForm />
+          {/* <GoogleButton/> */}
           <Link variant="body" sx={style.link} href="register">
             Create an Account
           </Link>
@@ -47,6 +61,7 @@ export const LoginPage = () => {
         <Footer/>
       </Box>
       {user !== null ? <Typography>Logged In User: {user.username}</Typography> : null}
+      <Button onClick={logout}>log out</Button>
     </Box>
   )
 
