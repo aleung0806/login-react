@@ -1,14 +1,9 @@
-import { useSelector, useDispatch } from 'react-redux'
-import { useTheme } from '@mui/material/styles'
-import { login, logout, register, fetchUser } from 'reducers/auth'
+
 import { useState, useEffect } from 'react'
-import GoogleButton from './components/GoogleButton'
 import jiraLogo from 'icons/jira-logo.svg'
-import googleLogo from 'icons/google-logo.svg'
 
 import LoginForm from './components/LoginForm'
 import Footer from './components/Footer'
-import RegisterConfirmation from './components/RegisterConfirmation'
 
 
 import { 
@@ -32,9 +27,7 @@ const style = {
 export const LoginPage = () => {
 
   const [sent, setSent] = useState('')
-  const dispatch = useDispatch()
   const navigate = useNavigate()
-  const user = useSelector(state => state.auth.user)
 
   useEffect(() => {
     if (user !== null){

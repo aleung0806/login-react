@@ -1,4 +1,3 @@
-import { useSelector, useDispatch } from 'react-redux'
 import { useTheme } from '@mui/material/styles'
 import { useCallback, useState, useEffect , useRef} from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -9,7 +8,6 @@ import { ReactComponent as WatchIcon } from '@atlaskit/icon/svgs/watch.svg'
 import { ReactComponent as WatchIconFilled } from '@atlaskit/icon/svgs/watch-filled.svg'
 
 
-import { login, logout, register, fetchUser } from 'reducers/auth'
 
 
 import { 
@@ -36,11 +34,9 @@ export const LoginForm = () => {
 
 
   const navigate = useNavigate()
-  const dispatch = useDispatch()
   const passwordRef = useRef(null)
 
   const loginHandler = async () => {
-    await dispatch(login(email, password))
   }
   
   useEffect(() => {

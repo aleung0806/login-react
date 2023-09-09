@@ -6,7 +6,7 @@ import {
 
 
 // import Project from './components/Project'
-import { LoginPage, RegisterPage } from './components/Auth'
+import { LoginPage, RegisterPage } from './components/auth'
 import Providers from './components/Providers'
 import HomePage from './components/pages/HomePage'
 import { useLoggedInUser } from './hooks/useLoggedInUser'
@@ -21,7 +21,6 @@ const App = () => {
         <Route path="/" element={<HomePage /> } />
         <Route path="/login" element={<LoginPage/>} />
         <Route path="/register" element={<RegisterPage/> } />
-        <Route path="/project/*" element={ <HomePage />} />
       </Routes>
     </Providers>
     

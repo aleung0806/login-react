@@ -1,6 +1,4 @@
-import { useSelector, useDispatch } from 'react-redux'
 import { useTheme } from '@mui/material/styles'
-import { login, logout, register, fetchUser } from 'reducers/auth'
 import { useState } from 'react'
 import Footer from './Footer'
 import mailImage from 'icons/mail-image.png'
@@ -18,7 +16,6 @@ import {
 
 const RegisterConfirmation = ({email}) => {
 
-  const dispatch = useDispatch()
               
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start'}}>

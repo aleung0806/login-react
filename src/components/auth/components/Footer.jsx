@@ -1,6 +1,4 @@
-import { useSelector, useDispatch } from 'react-redux'
 import { useTheme } from '@mui/material/styles'
-import { login, logout, register, fetchUser } from 'reducers/auth'
 import { useState, useEffect , useRef} from 'react'
 import { useNavigate } from 'react-router-dom'
 import validator from 'email-validator'

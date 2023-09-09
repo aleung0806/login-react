@@ -1,6 +1,4 @@
-import { useSelector, useDispatch } from 'react-redux'
 import { useTheme } from '@mui/material/styles'
-import { login, logout, register, fetchUser } from '../../reducers/auth'
 import { useState } from 'react'
 import GoogleButton from './GoogleButton'
 import jiraLogo from '../../icons/jira-logo.svg'
@@ -31,7 +29,6 @@ const style = {
 const Register = () => {
 
   const [sent, setSent] = useState('')
-  const dispatch = useDispatch()
   const navigate = useNavigate()
   
 

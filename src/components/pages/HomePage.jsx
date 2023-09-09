@@ -1,9 +1,10 @@
 import { useEffect } from 'react'
-import { useDispatch, useSelector} from 'react-redux'
 import { useNavigate , useParams } from 'react-router-dom'
 import { 
   Box
 } from '@mui/material'
+
+import { useLoggedInUser } from 'hooks/useLoggedInUser'
 
 const pageStyle = {
   display: 'flex',
@@ -20,11 +21,11 @@ const bodyStyle = {
 }
 
 const ProjectPage = () => {
-
+const user = useLoggedInUser()
  return (
   <Box sx={pageStyle}>
     <Box sx={bodyStyle}>
-      {body}
+      
     </Box>
   </Box>
 
