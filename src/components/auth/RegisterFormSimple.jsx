@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import validator from 'email-validator'
-import authService from '../../../services/auth'
+// import authService from '../../../services/auth'
 import { 
   TextField,
   Box,
@@ -22,7 +22,7 @@ const RegisterForm = () => {
     setEmailError(!validator.validate(email))
 
     if (validator.validate(email)){
-      authService.register(email, password)
+      //authService.register(email, password)
     }
 }
 

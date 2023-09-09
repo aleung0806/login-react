@@ -11,7 +11,7 @@ export const useLoggedInUser = () => {
     }
 
     fetchVerification().then(() => {
-      console.log('user', user)
+      console.log('user found', user)
     }).catch()
 
   }, [])

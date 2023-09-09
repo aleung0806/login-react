@@ -5,7 +5,6 @@ import {
 } from '@mui/material'
 
 import { useLoggedInUser } from 'hooks/useLoggedInUser'
-
 const pageStyle = {
   display: 'flex',
   flexDirection: 'column',
@@ -21,11 +20,19 @@ const bodyStyle = {
 }
 
 const ProjectPage = () => {
-const user = useLoggedInUser()
- return (
+  const user = useLoggedInUser()
+  const navigate = useNavigate()
+  
+  useEffect(() => {
+    if (user === null){
+      navigate('/login')
+    }
+  },[user])
+
+return (
   <Box sx={pageStyle}>
     <Box sx={bodyStyle}>
-      
+      {user}
     </Box>
   </Box>
 

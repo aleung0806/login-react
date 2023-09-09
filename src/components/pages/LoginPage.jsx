@@ -2,8 +2,8 @@
 import { useState, useEffect } from 'react'
 import jiraLogo from 'icons/jira-logo.svg'
 
-import LoginForm from './components/LoginForm'
-import Footer from './components/Footer'
+import LoginForm from '../auth/LoginForm'
+import Footer from '../auth/Footer'
 
 
 import { 
@@ -28,12 +28,8 @@ export const LoginPage = () => {
 
   const [sent, setSent] = useState('')
   const navigate = useNavigate()
-
-  useEffect(() => {
-    if (user !== null){
-      navigate('/')
-    } 
-  }, [user])
+  
+  const user = useLoggedInUser()
 
   return (
     <Box sx={style.page}>
@@ -55,4 +51,4 @@ export const LoginPage = () => {
   )
 
 }
-
+export default LoginPage

@@ -5,16 +5,15 @@ import {
 
 
 
-// import Project from './components/Project'
-import { LoginPage, RegisterPage } from './components/auth'
+import RegisterPage from './components/pages/RegisterPage'
+import LoginPage from './components/pages/LoginPage'
+
 import Providers from './components/Providers'
 import HomePage from './components/pages/HomePage'
 import { useLoggedInUser } from './hooks/useLoggedInUser'
 
 
 const App = () => {
-  const user = useLoggedInUser()
-
   return (
     <Providers>
       <Routes>

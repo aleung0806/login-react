@@ -1,13 +1,13 @@
 import { useTheme } from '@mui/material/styles'
 import { useState } from 'react'
-import GoogleButton from './components/GoogleButton'
+import GoogleButton from '../auth/GoogleButton'
 import jiraLogo from 'icons/jira-logo.svg'
 
 import googleLogo from 'icons/google-logo.svg'
 
-import RegisterForm from './components/RegisterFormSimple'
-import Footer from './components/Footer'
-import RegisterConfirmation from './components/RegisterConfirmation'
+import RegisterForm from '../auth/RegisterFormSimple'
+import Footer from '../auth/Footer'
+import RegisterConfirmation from '../auth/RegisterConfirmation'
 
 
 import { 
@@ -55,4 +55,5 @@ export const RegisterPage = () => {
   )
 
 }
+export default RegisterPage
 
