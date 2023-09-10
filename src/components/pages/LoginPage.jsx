@@ -5,6 +5,7 @@ import GoogleButton from '../auth/GoogleButton'
 import { useQuery } from 'react-query'
 import LoginForm from '../auth/LoginForm'
 import Footer from '../auth/Footer'
+import LogoutButton from '../auth/LogoutButton'
 
 import { useStore } from '../../hooks/store'
 import authService from '../../services/auth'
@@ -27,28 +28,22 @@ const style = {
 }
 
 export const LoginPage = () => {
-
-  
+  console.log('rendering login')
+ 
   const navigate = useNavigate()
   const user = useStore((state) => state.user)
   const verifyUser = useStore((state) => state.verifyUser)
-  const logout = useStore((state) => state.logout)
-
 
   useEffect(() => {
-    verifyUser()
+    const verify = async () => {
+      const verifiedUser = await verifyUser()
+      if(verifiedUser !== null){
+        navigate('/')
+      }
+    }
+    verify()
   }, [])
 
-
-  useEffect(() => {
-    if(user !== null){
-      navigate('/')
-    }
-  }, [user])
-
-  const logoutHandler = () => {
-    logout()
-  }
 
 
   return (
@@ -68,7 +63,7 @@ export const LoginPage = () => {
         <Footer/>
       </Box>
       {user !== null ? <Typography>Logged In User: {user.username}</Typography> : null}
-      <Button onClick={logoutHandler}>log out</Button>
+      <LogoutButton/>
     </Box>
   )
 

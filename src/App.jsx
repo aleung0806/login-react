@@ -12,15 +12,14 @@ import Providers from './components/Providers'
 import HomePage from './components/pages/HomePage'
 import { useLoggedInUser } from './hooks/useLoggedInUser'
 
-
 const App = () => {
   return (
     <Providers>
-      <Routes>
-        <Route path="/" element={<HomePage /> } />
-        <Route path="/login" element={<LoginPage/>} />
-        <Route path="/register" element={<RegisterPage/> } />
-      </Routes>
+        <Routes>
+          <Route path="/" element={<HomePage /> } />
+          <Route path="/login" element={<LoginPage/>} />
+          <Route path="/register" element={<RegisterPage/> } />
+        </Routes>
     </Providers>
     
   )

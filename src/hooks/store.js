@@ -6,12 +6,14 @@ export const useStore = create((set, get) => ({
   verifyUser: async () => {
     const verifiedUser = await authService.verify()
     console.log('verify results: ', verifiedUser)
-
     set({ user: verifiedUser })
+    return verifiedUser
   },
   login: async (email, password) => {
     const verifiedUser = await authService.login(email, password)
     set({ user: verifiedUser })
+    return verifiedUser
+
   },
   logout: async () => {
     set({ user: null })

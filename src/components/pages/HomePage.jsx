@@ -9,6 +9,9 @@ import { useQuery } from 'react-query'
 import { useStore } from '../../hooks/store'
 import authService from '../../services/auth'
 
+import LogoutButton from '../auth/LogoutButton'
+
+
 const pageStyle = {
   display: 'flex',
   flexDirection: 'column',
@@ -24,20 +27,21 @@ const bodyStyle = {
 }
 
 const HomePage = () => {
+  console.log('rendering home')
+
   const navigate = useNavigate()
   const user = useStore(state => state.user)
   const verifyUser = useStore(state => state.verifyUser)
 
   useEffect(() => {
-    verifyUser()
-  }, [])
-
-
-  useEffect(() => {
-    if(user === null){
-      //navigate('/login')
+    const verify = async () => {
+      const verifiedUser = await verifyUser()
+      if(verifiedUser === null){
+        navigate('/login')
+      }
     }
-  }, [user])
+    verify()
+  }, [])
 
   return (
     <Box sx={pageStyle}>
@@ -45,6 +49,7 @@ const HomePage = () => {
         {user && user.username}
       </Box>
       <Button onClick={verifyUser}>Verify</Button>
+      <LogoutButton/>
     </Box>
   )
 }

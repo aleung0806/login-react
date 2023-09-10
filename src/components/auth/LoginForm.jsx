@@ -1,11 +1,11 @@
 import { useTheme } from '@mui/material/styles'
-import { useCallback, useState, useEffect , useRef} from 'react'
 import { useNavigate } from 'react-router-dom'
 import validator from 'email-validator'
 
 import { ReactComponent as EditFilledIcon } from '@atlaskit/icon/svgs/edit-filled.svg'
 import { ReactComponent as WatchIcon } from '@atlaskit/icon/svgs/watch.svg'
 import { ReactComponent as WatchIconFilled } from '@atlaskit/icon/svgs/watch-filled.svg'
+import { useCallback, useState, useEffect , useRef} from 'react'
 import { useStore } from '../../hooks/store'
 
 import authService from '../../services/auth'
