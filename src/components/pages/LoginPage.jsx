@@ -29,20 +29,27 @@ const style = {
 export const LoginPage = () => {
 
   
-  const [sent, setSent] = useState('')
   const navigate = useNavigate()
-
   const user = useStore((state) => state.user)
+  const verifyUser = useStore((state) => state.verifyUser)
+  const logout = useStore((state) => state.logout)
 
-  const logout = () => {
-    authService.logout()
-  }
 
   useEffect(() => {
-    if (user !== null){
+    verifyUser()
+  }, [])
+
+
+  useEffect(() => {
+    if(user !== null){
       navigate('/')
     }
   }, [user])
+
+  const logoutHandler = () => {
+    logout()
+  }
+
 
   return (
     <Box sx={style.page}>
@@ -61,7 +68,7 @@ export const LoginPage = () => {
         <Footer/>
       </Box>
       {user !== null ? <Typography>Logged In User: {user.username}</Typography> : null}
-      <Button onClick={logout}>log out</Button>
+      <Button onClick={logoutHandler}>log out</Button>
     </Box>
   )
 

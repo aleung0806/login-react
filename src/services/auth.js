@@ -6,12 +6,18 @@ const api  = axios.create({
 })
 const login = async (email, password) => {
   const response = await api.post('/login', {email, password})
-  return response.data
+  if (response.status === 200){
+    return response.data
+  }
+  return null
 }
 
 const verify = async () => {
   const response = await api.get('/verify')
-  return response.data === '' ? null : response.data
+  if (response.status === 200){
+    return response.data
+  }
+  return null
 }
 
 const logout = async () => {

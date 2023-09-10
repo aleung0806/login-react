@@ -1,6 +1,13 @@
+import { QueryClient, QueryClientProvider, useQuery } from 'react-query'
+
+const queryClient = new QueryClient()
+
 const Providers = ({children}) => {
   return (
-    <div>{children}</div>
+    <QueryClientProvider client={queryClient}>
+    {children}
+    </QueryClientProvider>
+
   )
 }
 

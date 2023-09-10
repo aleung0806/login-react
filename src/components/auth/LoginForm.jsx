@@ -37,13 +37,16 @@ export const LoginForm = () => {
   const passwordRef = useRef(null)
 
 
-  const fetchUser = useStore(state => state.fetchUser)
   const login = useStore(state => state.login)
   const user = useStore(state => state.user)
 
 
   const loginHandler = async () => {
     await login(email, password)
+  }
+
+  const loginHandlerTester = async () => {
+    await login('turkey@cat.com', '123password')
   }
 
   useEffect(() => {
@@ -141,6 +144,7 @@ export const LoginForm = () => {
           >
            Log in
           </Button>
+          <Button onClick={loginHandlerTester}>test log in</Button>
         </Box>
   )
 

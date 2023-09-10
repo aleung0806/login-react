@@ -4,6 +4,7 @@ import {
   Box,
   Button
 } from '@mui/material'
+import { useQuery } from 'react-query'
 
 import { useStore } from '../../hooks/store'
 import authService from '../../services/auth'
@@ -24,23 +25,27 @@ const bodyStyle = {
 
 const HomePage = () => {
   const navigate = useNavigate()
-
-  const user = useStore((state) => state.user)
-  const fetchUser = useStore((state) => state.fetchUser)
+  const user = useStore(state => state.user)
+  const verifyUser = useStore(state => state.verifyUser)
 
   useEffect(() => {
-    if (user === null){
-      navigate('/login')
-    }
-  },[]) 
+    verifyUser()
+  }, [])
 
-return (
-  <Box sx={pageStyle}>
-    <Box sx={bodyStyle}>
-      {user && user.username}
+
+  useEffect(() => {
+    if(user === null){
+      //navigate('/login')
+    }
+  }, [user])
+
+  return (
+    <Box sx={pageStyle}>
+      <Box sx={bodyStyle}>
+        {user && user.username}
+      </Box>
+      <Button onClick={verifyUser}>Verify</Button>
     </Box>
-    <Button onClick={fetchUser}>Verify</Button>
-  </Box>
   )
 }
 
