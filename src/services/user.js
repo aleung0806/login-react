@@ -29,10 +29,10 @@ const removeById = async (id) => {
 //all
 const getAll = async () => {
   const response = await api.get(`/`)
-  return response.data
+  return response.data //check response codes for errors. do the same in auth
 }
 
-const deleteAll = async () => {
+const removeAll = async () => {
   const response = await api.delete(`/`)
   return response.data
 }

@@ -6,6 +6,7 @@ export const useStore = create((set, get) => ({
   user: null,
   //admin only
   allUsers: [],
+
   //AUTH
   verifySession: async () => {
     const verifiedUser = await authService.verifySession()
@@ -26,10 +27,11 @@ export const useStore = create((set, get) => ({
     const registeredUser = await authService.register(email, password)
     set({ user: registeredUser })
   },
+  
   // USERS
   getAllUsers: async () => {
     const users = await userService.getAll()
-    set({users: users})
+    set({allUsers: users})
   },
 
 }))

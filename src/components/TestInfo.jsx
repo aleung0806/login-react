@@ -4,6 +4,8 @@ import { useCookies } from 'react-cookie';
 
 import { useStore } from '../hooks/store'
 import authService from '../services/auth'
+import userService from '../services/user'
+
 import { 
   TextField,
   Input,
@@ -65,6 +67,10 @@ const TestInfo = () => {
     testTransform: 'none'
   }
 
+  useEffect(() => {
+
+  }, [allUsers])
+
   return (
     <Box sx={containerStyle}>
       <Typography>
@@ -82,11 +88,16 @@ const TestInfo = () => {
         Admin
       </Typography>
       <Box sx={adminInfoStyle}>
+        <button onClick={userService.create}>create user</button>
+        <button onClick={userService.getById}>get user by id</button>
+        <button onClick={userService.updateById}>update user by id</button>
+        <button onClick={userService.removeById}>remove user by id</button>
 
         <button onClick={getAllUsers}>get all users</button>
-        <Typography>
-          All users: {JSON.stringify(allUsers, null, 2)}
-        </Typography>
+        <button onClick={userService.removeAll} >remove all users</button>
+        <pre>
+          {JSON.stringify(allUsers, null, 2)}
+        </pre>
       </Box>
     </Box>
   )
