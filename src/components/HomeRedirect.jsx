@@ -17,10 +17,10 @@ import { useNavigate } from 'react-router-dom'
 const HomeRedirect= ({children}) => {
   console.log('rendering auth')
   const navigate = useNavigate()
-  const authUser = useStore(state => state.authUser)
+  const verifySession = useStore(state => state.verifySession)
   const user = useStore(state => state.user)
   const { status } = useQuery('user', async () => {
-    return await authUser
+    return await verifySession
   })
 
   if (status === 'loading'){

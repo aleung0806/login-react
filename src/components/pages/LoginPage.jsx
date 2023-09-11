@@ -32,11 +32,11 @@ export const LoginPage = () => {
  
   const navigate = useNavigate()
   const user = useStore((state) => state.user)
-  const authUser = useStore((state) => state.authUser)
+  const verifySession = useStore((state) => state.verifySession)
 
   useEffect(() => {
     const auth = async () => {
-      const verifiedUser = await authUser()
+      const verifiedUser = await verifySession()
       if(verifiedUser !== null){
         navigate('/')
       }

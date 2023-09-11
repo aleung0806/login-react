@@ -31,23 +31,23 @@ const HomePage = () => {
 
   const navigate = useNavigate()
   const user = useStore(state => state.user)
-  const authUser = useStore(state => state.authUser)
+  const verifySession = useStore(state => state.verifySession)
 
-  const [ authComplete, setAuthComplete ] = useState(false)
+  const [ sessionVerified, setSessionVerified ] = useState(false)
 
   useEffect(() => {
     const auth = async () => {
-      const verifiedUser = await authUser()
+      const verifiedUser = await verifySession()
       if(verifiedUser === null){
         navigate('/login')
       }
-      setAuthComplete(true)
+      setSessionVerified(true)
     }
     auth()
   }, [])
 
   useEffect(() => {
-    if(user === null && authComplete){
+    if(user === null && sessionVerified){
       navigate('/login')
     }
   }, [user])
@@ -57,7 +57,7 @@ const HomePage = () => {
       <Box sx={bodyStyle}>
         {user && user.username}
       </Box>
-      <Button onClick={authUser}>Auth</Button>
+      <Button onClick={verifySession}>Auth</Button>
       <LogoutButton/>
     </Box>
   )

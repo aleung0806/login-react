@@ -12,7 +12,7 @@ const login = async (email, password) => {
   return null
 }
 
-const auth = async () => {
+const verifySession = async () => {
   const response = await api.get('/verify')
   if (response.status === 200){
     return response.data
@@ -37,7 +37,7 @@ const register = async (email, password) => {
 
 export default {
   login,
-  auth,
+  verifySession,
   logout,
   register,
 }
