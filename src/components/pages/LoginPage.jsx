@@ -62,7 +62,7 @@ export const LoginPage = () => {
               Log in to continue
           </Typography>
           <LoginForm />
-          {/* <GoogleButton/> */}
+          <GoogleButton/>
           <Link variant="body" sx={style.link} href="register">
             Create an Account
           </Link>

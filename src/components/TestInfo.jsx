@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import jiraLogo from 'icons/jira-logo.svg'
+import { useCookies } from 'react-cookie';
 
 import { useStore } from '../hooks/store'
 import authService from '../services/auth'
@@ -19,6 +20,9 @@ const TestInfo = () => {
   const user = useStore((state) => state.user)
   const logout = useStore((state) => state.logout)
   const verifySession = useStore(state => state.verifySession)
+  const [cookies, setCookie, removeCookie] = useCookies();
+
+
 
   const loginTurkey= async () => {
     await login('turkey@cat.com', '123password')
@@ -48,6 +52,8 @@ const TestInfo = () => {
       <Typography>
       Logged in user is: {user && JSON.stringify(user, null, 2)}
       </Typography>
+
+
     </Box>
   )
 }

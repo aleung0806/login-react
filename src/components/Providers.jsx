@@ -1,13 +1,15 @@
 import { QueryClient, QueryClientProvider, useQuery } from 'react-query'
 const queryClient = new QueryClient()
+import { CookiesProvider } from 'react-cookie';
 
 const Providers = ({children}) => {
   return (
-    //<Auth>
-      <QueryClientProvider client={queryClient}>
+    <CookiesProvider defaultSetOptions >
+    <QueryClientProvider client={queryClient}>
       {children}
-      </QueryClientProvider>
-    //</Auth>
+    </QueryClientProvider>
+    </CookiesProvider>
+
   )
 }
 

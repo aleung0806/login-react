@@ -13,10 +13,12 @@ export const useStore = create((set, get) => ({
     const verifiedUser = await authService.login(email, password)
     set({ user: verifiedUser })
     return verifiedUser
-
   },
   logout: async () => {
     set({ user: null })
     await authService.logout()
-  }
+  },
+  register: async () => {
+    const registeredUser = await authService.register()
+  },
 }))

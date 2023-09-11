@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react'
 import { useNavigate , useParams } from 'react-router-dom'
 import { 
   Box,
-  Button
+  Button,
+  Typography
 } from '@mui/material'
 import { useQuery } from 'react-query'
 
@@ -22,8 +23,9 @@ const pageStyle = {
 
 const bodyStyle = {
   display: 'flex',
-  flexDirection: 'row',
-  alignItems: 'stretch'
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center'
 
 }
 
@@ -56,6 +58,7 @@ const HomePage = () => {
   return (
     <Box sx={pageStyle}>
       <Box sx={bodyStyle}>
+        <Typography>Home Page</Typography>
       </Box>
       <TestInfo/>
     </Box>
