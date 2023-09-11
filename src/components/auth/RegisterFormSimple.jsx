@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import validator from 'email-validator'
-// import authService from '../../../services/auth'
+import { useStore } from '../../hooks/store'
 import { 
   TextField,
   Box,
@@ -18,11 +18,14 @@ const RegisterForm = () => {
   const [ emailError, setEmailError ] = useState(false)
   const [ passwordError, setPasswordError ] = useState(false)
 
+
+  const register = useStore(state => state.register)
+
   const submitHandler = (e) => {
     setEmailError(!validator.validate(email))
 
     if (validator.validate(email)){
-      //authService.register(email, password)
+      register(email, password)
     }
 }
 

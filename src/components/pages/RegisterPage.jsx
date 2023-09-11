@@ -1,7 +1,8 @@
 import { useTheme } from '@mui/material/styles'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import GoogleButton from '../auth/GoogleButton'
 import jiraLogo from 'icons/jira-logo.svg'
+import { useStore } from '../../hooks/store'
 
 import googleLogo from 'icons/google-logo.svg'
 
@@ -30,7 +31,31 @@ const style = {
 export const RegisterPage = () => {
 
   const [sent, setSent] = useState('')
+  console.log('rendering register')
+ 
   const navigate = useNavigate()
+  const register = useStore(state => state.register)
+  const user = useStore((state) => state.user)
+  const verifySession = useStore((state) => state.verifySession)
+
+  useEffect(() => {
+    const auth = async () => {
+      const verifiedUser = await verifySession()
+      if(verifiedUser !== null){
+        navigate('/')
+      }
+    }
+    auth()
+  }, [])
+
+  useEffect(() => {
+    if(user !== null){
+      navigate('/')
+    }
+  }, [user])
+
+
+
   
   return (
     <Box sx={style.page}>

@@ -1,8 +1,12 @@
 import { create } from 'zustand'
 import authService from '../services/auth'
+import userService from '../services/user'
 
 export const useStore = create((set, get) => ({
   user: null,
+  //admin only
+  allUsers: [],
+  //AUTH
   verifySession: async () => {
     const verifiedUser = await authService.verifySession()
     console.log('verifySession results: ', verifiedUser)
@@ -18,7 +22,14 @@ export const useStore = create((set, get) => ({
     set({ user: null })
     await authService.logout()
   },
-  register: async () => {
-    const registeredUser = await authService.register()
+  register: async (email, password) => {
+    const registeredUser = await authService.register(email, password)
+    set({ user: registeredUser })
   },
+  // USERS
+  getAllUsers: async () => {
+    const users = await userService.getAll()
+    set({users: users})
+  },
+
 }))

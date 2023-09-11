@@ -58,7 +58,7 @@ const HomePage = () => {
   return (
     <Box sx={pageStyle}>
       <Box sx={bodyStyle}>
-        <Typography>Home Page</Typography>
+        
       </Box>
       <TestInfo/>
     </Box>

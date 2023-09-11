@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import validator from 'email-validator'
+import { useStore } from '../../hooks/store'
 
 import { 
   TextField,
@@ -19,6 +20,7 @@ const RegisterForm = ({sent, setSent}) => {
     setError(!validator.validate(email))
     if (validator.validate(email)){
       setSent(email)
+      
     }
 }
 

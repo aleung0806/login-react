@@ -1,24 +1,52 @@
 import axios from 'axios'
 
-const baseUrl = 'user'
+const api  = axios.create({
+  baseURL: "http://localhost:3001/v1/users",
+  withCredentials: true
+})
 
-const get = async () => {
-  const response = await axios.get(`/${baseUrl}`)
+//individual
+const create = async () => {
+  const response = await api.post(`/`)
   return response.data
 }
 
-const update = async (id, element) => {
-  const response = await axios.push(`${baseUrl}/${id}`, element)
+const getById = async (id) => {
+  const response = await api.get(`/${id}`)
   return response.data
 }
 
-const remove = async (id) => {
-  const response = await axios.delete(`${baseUrl}/${id}`)
+const updateById = async (id, element) => {
+  const response = await api.push(`/${id}`, element)
   return response.data
 }
+
+const removeById = async (id) => {
+  const response = await api.delete(`/${id}`)
+  return response.data
+}
+
+//all
+const getAll = async () => {
+  const response = await api.get(`/`)
+  return response.data
+}
+
+const deleteAll = async () => {
+  const response = await api.delete(`/`)
+  return response.data
+}
+
+
+
+
+
 
 export default {
-  get,
-  update,
-  remove
+  create,
+  getById,
+  updateById,
+  removeById,
+  getAll,
+  deleteAll
 }

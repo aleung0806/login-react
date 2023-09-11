@@ -32,13 +32,16 @@ const logout = async () => {
 
 const register = async (email, password) => {
   const response = await api.post('/register', {email: email, password: password, username: email})
-  return response.data
+  if (response.status === 201){
+    return response.data
+  }
+  return null
 }
 
 
 export default {
   login,
-  verifySession,
   logout,
   register,
+  verifySession,
 }
