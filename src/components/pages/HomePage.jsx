@@ -8,6 +8,7 @@ import { useQuery } from 'react-query'
 
 import { useStore } from '../../hooks/store'
 import authService from '../../services/auth'
+import TestInfo from '../TestInfo'
 
 import LogoutButton from '../auth/LogoutButton'
 
@@ -55,10 +56,8 @@ const HomePage = () => {
   return (
     <Box sx={pageStyle}>
       <Box sx={bodyStyle}>
-        {user && user.username}
       </Box>
-      <Button onClick={verifySession}>Auth</Button>
-      <LogoutButton/>
+      <TestInfo/>
     </Box>
   )
 }

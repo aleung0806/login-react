@@ -6,7 +6,7 @@ import { useQuery } from 'react-query'
 import LoginForm from '../auth/LoginForm'
 import Footer from '../auth/Footer'
 import LogoutButton from '../auth/LogoutButton'
-
+import TestInfo from '../TestInfo'
 import { useStore } from '../../hooks/store'
 import authService from '../../services/auth'
 import { 
@@ -31,6 +31,7 @@ export const LoginPage = () => {
   console.log('rendering login')
  
   const navigate = useNavigate()
+  const login = useStore(state => state.login)
   const user = useStore((state) => state.user)
   const verifySession = useStore((state) => state.verifySession)
 
@@ -50,6 +51,8 @@ export const LoginPage = () => {
     }
   }, [user])
 
+
+
   return (
     <Box sx={style.page}>
       <Box sx={style.modal}>
@@ -66,8 +69,7 @@ export const LoginPage = () => {
         </Box>
         <Footer/>
       </Box>
-      {user !== null ? <Typography>Logged In User: {user.username}</Typography> : null}
-      <LogoutButton/>
+      <TestInfo/>
     </Box>
   )
 

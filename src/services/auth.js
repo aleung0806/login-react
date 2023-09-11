@@ -4,6 +4,7 @@ const api  = axios.create({
   baseURL: "http://localhost:3001/v1",
   withCredentials: true
 })
+
 const login = async (email, password) => {
   const response = await api.post('/login', {email, password})
   if (response.status === 200){

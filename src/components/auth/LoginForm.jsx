@@ -45,10 +45,6 @@ export const LoginForm = () => {
     await login(email, password)
   }
 
-  const loginHandlerTester = async () => {
-    await login('turkey@cat.com', '123password')
-  }
-
   useEffect(() => {
     const timeout = setTimeout(() => {
       passwordRef.current.focus();
@@ -144,7 +140,6 @@ export const LoginForm = () => {
           >
            Log in
           </Button>
-          <Button onClick={loginHandlerTester}>test log in</Button>
         </Box>
   )
 
