@@ -12,12 +12,15 @@ import {
   InputAdornment,
   IconButton
 } from '@mui/material'
+import { useNavigate } from 'react-router-dom'
 
-const Verify = ({children}) => {
-  console.log('rendering verify')
-  const verifyUser = useStore(state => state.verifyUser)
+const HomeRedirect= ({children}) => {
+  console.log('rendering auth')
+  const navigate = useNavigate()
+  const authUser = useStore(state => state.authUser)
+  const user = useStore(state => state.user)
   const { status } = useQuery('user', async () => {
-    return await verifyUser
+    return await authUser
   })
 
   if (status === 'loading'){
@@ -28,6 +31,10 @@ const Verify = ({children}) => {
     return <Box>error</Box>
   }
 
+  if (status === 'success' && user === null){
+    navigate('/login')
+  }
+
   return (
     <Box>
       {children}
@@ -35,4 +42,4 @@ const Verify = ({children}) => {
   )
 }
 
-export default Verify
+export default HomeRedirect

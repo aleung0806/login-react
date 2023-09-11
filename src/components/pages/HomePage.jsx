@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate , useParams } from 'react-router-dom'
 import { 
   Box,
@@ -31,24 +31,33 @@ const HomePage = () => {
 
   const navigate = useNavigate()
   const user = useStore(state => state.user)
-  const verifyUser = useStore(state => state.verifyUser)
+  const authUser = useStore(state => state.authUser)
+
+  const [ authComplete, setAuthComplete ] = useState(false)
 
   useEffect(() => {
-    const verify = async () => {
-      const verifiedUser = await verifyUser()
+    const auth = async () => {
+      const verifiedUser = await authUser()
       if(verifiedUser === null){
         navigate('/login')
       }
+      setAuthComplete(true)
     }
-    verify()
+    auth()
   }, [])
+
+  useEffect(() => {
+    if(user === null && authComplete){
+      navigate('/login')
+    }
+  }, [user])
 
   return (
     <Box sx={pageStyle}>
       <Box sx={bodyStyle}>
         {user && user.username}
       </Box>
-      <Button onClick={verifyUser}>Verify</Button>
+      <Button onClick={authUser}>Auth</Button>
       <LogoutButton/>
     </Box>
   )

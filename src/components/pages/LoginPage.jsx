@@ -32,19 +32,23 @@ export const LoginPage = () => {
  
   const navigate = useNavigate()
   const user = useStore((state) => state.user)
-  const verifyUser = useStore((state) => state.verifyUser)
+  const authUser = useStore((state) => state.authUser)
 
   useEffect(() => {
-    const verify = async () => {
-      const verifiedUser = await verifyUser()
+    const auth = async () => {
+      const verifiedUser = await authUser()
       if(verifiedUser !== null){
         navigate('/')
       }
     }
-    verify()
+    auth()
   }, [])
 
-
+  useEffect(() => {
+    if(user !== null){
+      navigate('/')
+    }
+  }, [user])
 
   return (
     <Box sx={style.page}>

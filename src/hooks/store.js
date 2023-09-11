@@ -3,9 +3,9 @@ import authService from '../services/auth'
 
 export const useStore = create((set, get) => ({
   user: null,
-  verifyUser: async () => {
-    const verifiedUser = await authService.verify()
-    console.log('verify results: ', verifiedUser)
+  authUser: async () => {
+    const verifiedUser = await authService.auth()
+    console.log('auth results: ', verifiedUser)
     set({ user: verifiedUser })
     return verifiedUser
   },

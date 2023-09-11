@@ -6,7 +6,7 @@ export const useLoggedInUser = () => {
 
   useEffect(() => {
     const fetchVerification = async () => {
-      const verifiedUser = await authService.verify()
+      const verifiedUser = await authService.auth()
       setUser(verifiedUser)
     }
 
