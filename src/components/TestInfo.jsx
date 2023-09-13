@@ -36,7 +36,7 @@ const TestInfo = () => {
   const [cookies, setCookie, removeCookie] = useCookies();
 
   const loginTurkey= async () => {
-    await login('superturkey@cat.com', 'password')
+    await login('testerturkey@gmail.com', 'password')
   }
 
   const containerStyle = {

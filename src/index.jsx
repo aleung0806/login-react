@@ -8,6 +8,8 @@ import theme from './theme'
 import { CookiesProvider } from 'react-cookie'
 import { QueryClient, QueryClientProvider} from 'react-query'
 
+import './services/interceptors'
+
 const queryClient = new QueryClient()
 
 const root = ReactDOM.createRoot(document.getElementById('root'))

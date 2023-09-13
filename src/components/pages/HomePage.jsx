@@ -10,6 +10,7 @@ import { useQuery } from 'react-query'
 import { useStore } from '../../hooks/store'
 import authService from '../../services/auth'
 import TestInfo from '../TestInfo'
+import NetworkInfo from '../NetworkInfo'
 
 import LogoutButton from '../auth/LogoutButton'
 
@@ -61,6 +62,7 @@ const HomePage = () => {
         
       </Box>
       <TestInfo/>
+      <NetworkInfo/>
     </Box>
   )
 }

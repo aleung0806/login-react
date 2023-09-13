@@ -1,9 +1,12 @@
 import axios from 'axios'
+import addDebugInterceptor from './interceptors';
 
 const api  = axios.create({
   baseURL: "http://localhost:3001/v1",
   withCredentials: true
 })
+
+addDebugInterceptor(api)
 
 const login = async (email, password) => {
   const response = await api.post('/login', {email, password})

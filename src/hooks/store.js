@@ -6,11 +6,13 @@ export const useStore = create((set, get) => ({
   user: null,
   //admin only
   allUsers: [],
+  //debug
+  response: {},
+  request: {},
 
   //AUTH
   verifySession: async () => {
     const verifiedUser = await authService.verifySession()
-    console.log('verifySession results: ', verifiedUser)
     set({ user: verifiedUser })
     return verifiedUser
   },
@@ -32,6 +34,14 @@ export const useStore = create((set, get) => ({
   getAllUsers: async () => {
     const users = await userService.getAll()
     set({allUsers: users})
+  },
+
+  setRequest: async (request) => {
+    set({request: request})
+  },
+
+  setResponse: async (response) => {
+    set({response: response})
   },
 
 }))
