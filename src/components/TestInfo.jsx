@@ -19,6 +19,10 @@ import { useLoggedInUser } from 'hooks/useLoggedInUser'
 
 
 const TestInfo = () => {
+  const [id, setId] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
   console.log('rendering TestInfo')
   const user = useStore((state) => state.user)
   const login = useStore(state => state.login)
@@ -32,7 +36,7 @@ const TestInfo = () => {
   const [cookies, setCookie, removeCookie] = useCookies();
 
   const loginTurkey= async () => {
-    await login('turkey@cat.com', '123password')
+    await login('superturkey@cat.com', 'password')
   }
 
   const containerStyle = {
@@ -88,13 +92,26 @@ const TestInfo = () => {
         Admin
       </Typography>
       <Box sx={adminInfoStyle}>
-        <button onClick={userService.create}>create user</button>
-        <button onClick={userService.getById}>get user by id</button>
-        <button onClick={userService.updateById}>update user by id</button>
-        <button onClick={userService.removeById}>remove user by id</button>
+        <Typography>User</Typography>
+        <form>
+          <label>id</label> <input value={id} onChange={(e)=> setId(e.target.value)}/>
+        </form>
+        <form>
+          <label>email</label> <input value={email} onChange={(e)=> setEmail(e.target.value)}/>
+        </form>
+        <form>
+          <label>password</label> <input value={password} onChange={(e)=> setPassword(e.target.value)}/>
+        </form>
+        <button onClick={() => userService.create({email, password, username: email})}>create</button>
 
-        <button onClick={getAllUsers}>get all users</button>
-        <button onClick={userService.removeAll} >remove all users</button>
+        <button onClick={() => userService.getById(id)}>get by id</button>
+        <button onClick={() => userService.updateById(id, {email, password})}>update by id</button>
+        <button onClick={() => userService.removeById(id)}>remove by id</button>
+
+
+        <button onClick={userService.removeAll} >remove all</button>
+
+        <button onClick={getAllUsers}>get all </button>
         <pre>
           {JSON.stringify(allUsers, null, 2)}
         </pre>

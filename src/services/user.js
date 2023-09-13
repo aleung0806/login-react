@@ -6,8 +6,8 @@ const api  = axios.create({
 })
 
 //individual
-const create = async () => {
-  const response = await api.post(`/`)
+const create = async (element) => {
+  const response = await api.post(`/`, element)
   return response.data
 }
 
@@ -48,5 +48,5 @@ export default {
   updateById,
   removeById,
   getAll,
-  deleteAll
+  removeAll
 }
