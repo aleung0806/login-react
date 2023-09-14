@@ -2,6 +2,8 @@
 import { useState, useEffect } from 'react'
 import jiraLogo from 'icons/jira-logo.svg'
 import GoogleButton from '../auth/GoogleButton'
+import GoogleButtonBasic from '../auth/GoogleButtonBasic'
+
 import { useQuery } from 'react-query'
 import LoginForm from '../auth/LoginForm'
 import Footer from '../auth/Footer'
@@ -62,7 +64,7 @@ export const LoginPage = () => {
               Log in to continue
           </Typography>
           <LoginForm />
-          <GoogleButton/>
+          <GoogleButtonBasic/>
           <Link variant="body" sx={style.link} href="register">
             Create an Account
           </Link>

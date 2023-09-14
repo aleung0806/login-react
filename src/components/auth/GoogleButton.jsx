@@ -12,8 +12,7 @@ import {
 const GoogleButton = () => {
 
   const handleCallbackResponse = (response) => {
-    console.log(`JWT ID Token: ${response.credential}`)
-    
+    console.log(`JWT ID Token: ${JSON.stringify(response, null, 2)}`)
   }
   useEffect(() => {
     /* global google */
