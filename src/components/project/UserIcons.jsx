@@ -1,5 +1,4 @@
 
-import { useSelector } from 'react-redux'
 import { red, purple, teal } from '@mui/material/colors'
 import {
   AvatarGroup

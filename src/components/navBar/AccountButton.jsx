@@ -14,15 +14,9 @@ import {
 
 import Settings from '@mui/icons-material/Settings'
 import Logout from '@mui/icons-material/Logout'
-
-import { useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
-
+import { useStore } from '../../store'
 import InitialsAvatar from '../reusable/InitialsAvatar'
-
-import { useDispatch } from 'react-redux'
-import { logout } from '../../reducers/auth'
-
+import { useNavigate } from 'react-router-dom'
 const avatarStyles = {
   height: '24px',
   width: '24px',
@@ -32,12 +26,12 @@ const avatarStyles = {
 
 const AccountButton = ()  => {
   const navigate = useNavigate()
-  const dispatch = useDispatch()
-  const user = useSelector(state => state.auth.user)
+  const user = useStore(state => state.user)
+
   const [open, setOpen] = useState(false)
   const logoutHandler = () => {
 
-    dispatch(logout())
+    // dispatch(logout())
     navigate('/login')
   }
 
@@ -57,8 +51,6 @@ const AccountButton = ()  => {
     <Box>
       {user !== null &&
       <Box>
-
-
           <IconButton onClick={handleOpen} >
             <InitialsAvatar sx={avatarStyles} user={user}/>
           </IconButton>

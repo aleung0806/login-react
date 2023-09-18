@@ -1,8 +1,6 @@
-import { useDispatch } from 'react-redux'
 import AddRoundedIcon from '@mui/icons-material/AddRounded'
 
 import ClickToAdd from '../reusable/ClickToAdd'
-import { createList } from '../../reducers/project'
 
 const buttonStyle = {
   display: 'inline-block',
@@ -17,7 +15,7 @@ const AddListButton = ({project}) => {
   const dispatch = useDispatch()
 
   const submit = (input) => {
-    dispatch(createList({ title: input, projectId: project.id }))
+    // dispatch(createList({ title: input, projectId: project.id }))
   }
   const ButtonIcon = () => < AddRoundedIcon fontSize="large" />
 

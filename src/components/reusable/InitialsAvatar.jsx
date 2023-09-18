@@ -13,15 +13,14 @@ const InitialsAvatar = ({sx, user}) => {
   }
 
   const avatarStyles = () => {
-    const first = user.firstName
-    const last = user.lastName
+   
     return {
       sx: {
         ...sx,
-        backgroundColor: stringToColor(first),
+        backgroundColor: stringToColor(user.username),
         fontWeight: '600'
       },
-      children: `${first.charAt(0)}${last.charAt(0)}`,
+      children: `${user.username.charAt(0)}`,
     }
   }
 

@@ -8,8 +8,9 @@ import { useStore } from '../../store'
 
 import TestInfo from '../debug/TestInfo'
 import NetworkInfo from '../debug/NetworkInfo'
-
 import SideMenu from '../sideMenu/SideMenu'
+import NavBar from '../navBar/NavBar'
+import Project from '../project/Project'
 
 
 const pageStyle = {
@@ -56,13 +57,13 @@ const ProjectPage = () => {
 
   return (
     <Box sx={pageStyle}>
-      {/* <NavBar/> */}
+      <NavBar/>
       <Box sx={bodyStyle}>
         <SideMenu project={project}/>
-        {/* <Project project={project}/> */}
+        <Project project={project}/>
       </Box>
-      <TestInfo/>
-      <NetworkInfo/>
+      {/* <TestInfo/>
+      <NetworkInfo/> */}
     </Box>
   )
 }

@@ -10,13 +10,12 @@ import {
 
 
 import DeleteIcon from '@mui/icons-material/Delete'
-import { useDispatch } from 'react-redux'
-import { createRole } from '../../reducers/project'
 import { useState } from 'react'
 
 import AtlasIcon from '../reusable/AtlasIcon'
 import {ReactComponent as InviteTeam} from '@atlaskit/icon/svgs/invite-team.svg'
 import ControlledForm from '../reusable/ControlledForm'
+
 const modalContentStyle = {
   display: 'flex',
   flexDirection: 'column',
@@ -64,7 +63,6 @@ const buttonStyle = (theme) => {
   }
 }
 const AddUserButton = ({project}) => {
-  const dispatch = useDispatch()
   const [open, setOpen] = useState(false)
   const theme = useTheme()
   const [email, setEmail] = useState('')
@@ -74,7 +72,7 @@ const AddUserButton = ({project}) => {
 
 
 const inviteHandler = () => {
-  dispatch(createRole({userId: 12, projectId: project.id, role: 'member'}))
+  // dispatch(createRole({userId: 12, projectId: project.id, role: 'member'}))
 }
 
 

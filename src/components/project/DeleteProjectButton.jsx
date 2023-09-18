@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { 
   Typography,
@@ -8,13 +7,12 @@ import {
  } from '@mui/material'
 import DeleteIcon from '@mui/icons-material/Delete'
 
-import { deleteProject } from '../../reducers/project'
 import DeleteModal from '../reusable/DeleteModal'
+import { useStore } from '../../store'
 
 const DeleteProjectButton = ({project}) => {
-  const dispatch = useDispatch()
   const navigate = useNavigate()
-  const projects = useSelector(state => state.allProjects)
+  const projects = useStore(state => state.allProjects)
   const [open, setOpen] = useState(false)
 
   const handleOpen = () => setOpen(true)

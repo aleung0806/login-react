@@ -1,6 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux'
-
-import { updateProject } from '../../reducers/project'
+import { useStore } from '../../store'
 import ControlledForm from '../reusable/ControlledForm'
 
 const inputStyle = {
@@ -9,10 +7,9 @@ const inputStyle = {
 }
 
 const ProjectTitle = () => {
-  const dispatch = useDispatch()
-  const project = useSelector(state => state.project)
+  const project = useStore(state => state.project)
   const submit = (input) => {
-    dispatch(updateProject({id: project.id, title: input}))
+    // dispatch(updateProject({id: project.id, title: input}))
   }
 
   return (

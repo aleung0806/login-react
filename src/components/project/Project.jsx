@@ -1,5 +1,4 @@
 import styled from "styled-components"
-import { useDispatch, useSelector } from 'react-redux'
 import { DragDropContext } from "react-beautiful-dnd";
 
 import { 
@@ -19,10 +18,9 @@ import SortByDropdown from './SortByDropdown'
 import GroupByDropdown from './GroupByDropdown'
 import StarButton from './StarButton'
 
-import List from "./list/List"
+// import List from "./list/List"
 
 import { useParams } from 'react-router-dom'
-import { moveIssue } from '../../reducers/project'
 
 const buttonStyle = {
   height: '35px',
@@ -59,10 +57,9 @@ const linkStyle = {
 
 function Project({project}) {
   const { id } = useParams()
-  const dispatch = useDispatch()
 
   const onDragEnd = (result) => {
-    dispatch(moveIssue(result, project))
+    // dispatch(moveIssue(result, project))
   }
 
   return (
@@ -94,7 +91,7 @@ function Project({project}) {
         </Box>
       <Box sx={listAreaStyle}>
           <DragDropContext onDragEnd={onDragEnd} >
-              {project.lists !== null && project.lists.map((list) => <List listContent={list} key={list.id}/>)}
+              {/* {project.lists !== null && project.lists.map((list) => <List listContent={list} key={list.id}/>)} */}
           </DragDropContext>
           <AddListButton project={project}/>
         </Box>

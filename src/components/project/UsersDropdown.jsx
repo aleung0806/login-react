@@ -1,7 +1,5 @@
 import { useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { updateIssue } from '../../../reducers/project'
-
+import { useStore } from '../../store'
 import {
   Box,
   Typography,
@@ -46,8 +44,7 @@ const menuItemStyle = {
 
 const AssignedToDropdown = ({ issue }) => {
   const [anchor, setAnchor] = useState(null)
-  const dispatch = useDispatch()
-  const selections = useSelector(state => state.project.users)
+  const selections = useStore(state => state.project.users)
 
   const handleOpen = (e) => { setAnchor(e.currentTarget) }
   const handleClose = () => { setAnchor(null) }
