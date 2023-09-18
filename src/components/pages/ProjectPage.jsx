@@ -1,19 +1,16 @@
-import { useEffect } from 'react'
-import { useDispatch, useSelector} from 'react-redux'
-import { useNavigate , useParams } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { 
-  Box
+  Box,
 } from '@mui/material'
 
-import Project from '../Project'
-import NavBar from '../NavBar'
-import SideMenu from '../SideMenu'
-import { fetchProject } from '../../reducers/project'
-import { fetchAllProjects } from '../../reducers/allProjects'
-import { fetchUser } from '../../reducers/auth'
-import { verifySession } from '../../reducers/auth'
+import { useStore } from '../../store'
 
-import VerifySession from './VerifySession'
+import TestInfo from '../debug/TestInfo'
+import NetworkInfo from '../debug/NetworkInfo'
+
+import SideMenu from '../sideMenu/SideMenu'
+
 
 const pageStyle = {
   display: 'flex',
@@ -24,45 +21,49 @@ const pageStyle = {
 
 const bodyStyle = {
   display: 'flex',
-  flexDirection: 'row',
-  alignItems: 'stretch'
-
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center'
 }
 
 const ProjectPage = () => {
-  const { id } = useParams()
-  const dispatch = useDispatch()
+  console.log('rendering home')
+
   const navigate = useNavigate()
-  const user = useSelector(state => state.auth.user)
-  const projects = useSelector(state => state.allProjects)
-  const project = useSelector(state => state.project)
+  const user = useStore(state => state.user)
+  const project = useStore(state => state.project)
+
+  const verifySession = useStore(state => state.verifySession)
+
+  const [ sessionVerified, setSessionVerified ] = useState(false)
 
   useEffect(() => {
-    if (project === null || project.id !== parseInt(id) ){
-      dispatch(fetchProject(id))
+    const auth = async () => {
+      const verifiedUser = await verifySession()
+      if(verifiedUser === null){
+        navigate('/login')
+      }
+      setSessionVerified(true)
     }
-  }, [id])
+    auth()
+  }, [])
 
   useEffect(() => {
-    if (user === null){
+    if(user === null && sessionVerified){
       navigate('/login')
-    } 
+    }
   }, [user])
 
-
   return (
-        <VerifySession >
-          {user !== null && projects !== null && project !== null  &&
-            <Box sx={pageStyle}>
-              <NavBar/>
-              <Box sx={bodyStyle}>
-                <SideMenu project={project}/>
-                <Project project={project}/>
-              </Box>
-            </Box>
-          }
-        </VerifySession>
-
+    <Box sx={pageStyle}>
+      {/* <NavBar/> */}
+      <Box sx={bodyStyle}>
+        <SideMenu project={project}/>
+        {/* <Project project={project}/> */}
+      </Box>
+      <TestInfo/>
+      <NetworkInfo/>
+    </Box>
   )
 }
 

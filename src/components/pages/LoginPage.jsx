@@ -8,8 +8,8 @@ import { useQuery } from 'react-query'
 import LoginForm from '../auth/LoginForm'
 import Footer from '../auth/Footer'
 import LogoutButton from '../auth/LogoutButton'
-import TestInfo from '../TestInfo'
-import { useStore } from '../../hooks/store'
+import TestInfo from '../debug/TestInfo'
+import { useStore } from '../../store'
 import authService from '../../services/auth'
 import { 
   TextField,

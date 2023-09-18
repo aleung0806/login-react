@@ -6,7 +6,7 @@ import { ReactComponent as EditFilledIcon } from '@atlaskit/icon/svgs/edit-fille
 import { ReactComponent as WatchIcon } from '@atlaskit/icon/svgs/watch.svg'
 import { ReactComponent as WatchIconFilled } from '@atlaskit/icon/svgs/watch-filled.svg'
 import { useCallback, useState, useEffect , useRef} from 'react'
-import { useStore } from '../../hooks/store'
+import { useStore } from '../../store'
 
 import authService from '../../services/auth'
 

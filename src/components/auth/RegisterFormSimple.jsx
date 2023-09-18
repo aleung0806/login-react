@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import validator from 'email-validator'
-import { useStore } from '../../hooks/store'
+import { useStore } from '../../store'
 import { 
   TextField,
   Box,

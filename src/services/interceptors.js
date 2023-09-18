@@ -1,4 +1,4 @@
-import { useStore } from '../hooks/store'
+import { useStore } from '../store'
 
 const addDebugInterceptor = (api) => {
   api.interceptors.request.use((config) => {

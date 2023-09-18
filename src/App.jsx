@@ -5,21 +5,15 @@ import {
 
 import RegisterPage from './components/pages/RegisterPage'
 import LoginPage from './components/pages/LoginPage'
-
-import Providers from './components/Providers'
-import HomePage from './components/pages/HomePage'
-import { useLoggedInUser } from './hooks/useLoggedInUser'
+import ProjectPage from './components/pages/ProjectPage'
 
 const App = () => {
   return (
-    <Providers>
         <Routes>
-          <Route path="/" element={<HomePage /> } />
+          <Route path="/" element={<ProjectPage /> } />
           <Route path="/login" element={<LoginPage/>} />
           <Route path="/register" element={<RegisterPage/> } />
         </Routes>
-    </Providers>
-    
   )
 }
 

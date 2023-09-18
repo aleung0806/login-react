@@ -2,7 +2,7 @@ import { useTheme } from '@mui/material/styles'
 import { useState, useEffect } from 'react'
 import GoogleButton from '../auth/GoogleButton'
 import jiraLogo from 'icons/jira-logo.svg'
-import { useStore } from '../../hooks/store'
+import { useStore } from '../../store'
 
 import googleLogo from 'icons/google-logo.svg'
 
