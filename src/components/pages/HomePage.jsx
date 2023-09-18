@@ -2,17 +2,16 @@ import { useEffect, useState } from 'react'
 import { useNavigate , useParams } from 'react-router-dom'
 import { 
   Box,
-  Button,
-  Typography
 } from '@mui/material'
-import { useQuery } from 'react-query'
 
 import { useStore } from '../../hooks/store'
-import authService from '../../services/auth'
+
 import TestInfo from '../TestInfo'
 import NetworkInfo from '../NetworkInfo'
 
-import LogoutButton from '../auth/LogoutButton'
+import Project from '../components/jira/Project'
+import NavBar from '../components/jira/NavBar'
+import SideMenu from '../components/jira/SideMenu'
 
 
 const pageStyle = {
@@ -27,7 +26,6 @@ const bodyStyle = {
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center'
-
 }
 
 const HomePage = () => {
@@ -58,8 +56,10 @@ const HomePage = () => {
 
   return (
     <Box sx={pageStyle}>
+      <NavBar/>
       <Box sx={bodyStyle}>
-        
+        <SideMenu project={project}/>
+        <Project project={project}/>
       </Box>
       <TestInfo/>
       <NetworkInfo/>
