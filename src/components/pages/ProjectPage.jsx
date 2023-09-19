@@ -36,6 +36,10 @@ const ProjectPage = () => {
 
   const verifySession = useStore(state => state.verifySession)
 
+  const getProject = useStore(state => state.getProject)
+  const getAllProjects = useStore(state => state.getAllProjects)
+
+
   const [ sessionVerified, setSessionVerified ] = useState(false)
 
   useEffect(() => {
@@ -44,6 +48,9 @@ const ProjectPage = () => {
       if(verifiedUser === null){
         navigate('/login')
       }
+      await getProject()
+      await getAllProjects()
+
       setSessionVerified(true)
     }
     auth()
@@ -62,8 +69,8 @@ const ProjectPage = () => {
         <SideMenu project={project}/>
         <Project project={project}/>
       </Box>
-      {/* <TestInfo/>
-      <NetworkInfo/> */}
+      <TestInfo/>
+      <NetworkInfo/>
     </Box>
   )
 }

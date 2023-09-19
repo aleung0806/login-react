@@ -3,7 +3,7 @@ import jiraLogo from 'icons/jira-logo.svg'
 import { useCookies } from 'react-cookie';
 
 import { useStore } from '../../store'
-import userService from '../../services/user'
+import { userService }from '../../services'
 
 import { 
   TextField,

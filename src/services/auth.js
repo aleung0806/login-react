@@ -2,7 +2,7 @@ import axios from 'axios'
 import addDebugInterceptor from './interceptors';
 
 const api  = axios.create({
-  baseURL: "http://localhost:3001/v1",
+  baseURL: "http://localhost:3001",
   withCredentials: true
 })
 
@@ -28,9 +28,8 @@ const logout = async () => {
   const response = await api.post('/logout')
   if (response.status === 200){
     return response.data
-  }else {
-    throw new Error()
   }
+  return null
 }
 
 const register = async (email, password) => {

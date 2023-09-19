@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 import authService from '../services/auth'
-import userService from '../services/user'
+import { userService } from '../services'
   
 export const authSlice = (set, get) => ({
     user: null,
@@ -9,6 +9,15 @@ export const authSlice = (set, get) => ({
     //debug
     response: {},
     request: {},
+
+    //debug
+    setRequest: async (request) => {
+      set({request: request})
+    },
+  
+    setResponse: async (response) => {
+      set({response: response})
+    },
   
     //AUTH
     verifySession: async () => {
@@ -29,19 +38,11 @@ export const authSlice = (set, get) => ({
       const registeredUser = await authService.register(email, password)
       set({ user: registeredUser })
     },
-    
+
     // USERS
     getAllUsers: async () => {
       const users = await userService.getAll()
       set({allUsers: users})
-    },
-  
-    setRequest: async (request) => {
-      set({request: request})
-    },
-  
-    setResponse: async (response) => {
-      set({response: response})
     },
   
   })

@@ -1,56 +1,60 @@
 import axios from 'axios'
 import addDebugInterceptor from './interceptors';
 
+
 const api  = axios.create({
-  baseURL: "http://localhost:3001/v1",
+  baseURL: "http://localhost:3001",
   withCredentials: true
 })
 
 addDebugInterceptor(api)
 
+const path = '/users'
 
-//individual
-const create = async (element) => {
-  const response = await api.post(`/users`, element)
-  return response.data
+export const create = async (element) => {
+  const response = await api.post(path, element)
+  if (response.status === 201){
+    return response.data
+  }
+  return null
 }
 
-const getById = async (id) => {
-  const response = await api.get(`/users/${id}`)
-  return response.data
+export const get = async (id) => {
+  const response = await api.get(`${path}/${id}`)
+  if (response.status === 200){
+    return response.data
+  }
+  return null
 }
 
-const updateById = async (id, element) => {
-  const response = await api.push(`/users/${id}`, element)
-  return response.data
+export const getAll = async () => {
+  const response = await api.get(path)
+  if (response.status === 200){
+    return response.data
+  }
+  return null  
 }
 
-const removeById = async (id) => {
-  const response = await api.delete(`/users/${id}`)
-  return response.data
+export const update = async (id, element) => {
+  const response = await api.push(`${path}/${id}`, element)
+  if (response.status === 200){
+    return response.data
+  }
+  return null  
 }
 
-//all
-const getAll = async () => {
-  const response = await api.get(`/users`)
-  return response.data //check response codes for errors. do the same in auth
+export const remove = async (id) => {
+  const response = await api.delete(`${path}/${id}`)
+  if (response.status === 204){
+    return response.data
+  }
+  return null  
 }
 
-const removeAll = async () => {
-  const response = await api.delete(`/users`)
-  return response.data
-}
-
-
-
-
-
-
-export default {
-  create,
-  getById,
-  updateById,
-  removeById,
-  getAll,
-  removeAll
+export const removeAll = async (id) => {
+  const response = await api.delete(path)
+  if (response.status === 204){
+    return response.data
+  }
+  return null  
 }
