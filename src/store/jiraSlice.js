@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { ProjectService } from '../services/jira'
+import { projectService } from '../services/jira'
 
 const defaultProject = {
   id: 1,
@@ -41,15 +41,14 @@ const defaultProjects = [
 ]
 
 export const jiraSlice = (set, get) => ({
-    project: defaultProject,
-    projects: defaultProjects,
-  
-    getAllProjects: async () => {
-      // const projects = await ProjectService.getAll()
-      // set({projects: projects})
-    },
-    getProject: async () => {
-      // const project = await ProjectService.get()
-      // set({project: project})
-    }
-  })
+  project: null,
+  projects: null,
+  getAllProjects: async () => {
+    const projects = await projectService.getAll()
+    set({projects: projects})
+  },
+  getProject: async () => {
+    // const project = await projectService.get()
+    // set({project: project})
+  }
+})

@@ -36,7 +36,7 @@ export const getAll = async () => {
 }
 
 export const update = async (id, element) => {
-  const response = await api.push(`${path}/${id}`, element)
+  const response = await api.patch(`${path}/${id}`, element)
   if (response.status === 200){
     return response.data
   }

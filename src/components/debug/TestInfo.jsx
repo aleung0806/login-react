@@ -18,6 +18,7 @@ import { useLoggedInUser } from 'hooks/useLoggedInUser'
 
 import UserDebug from './UserDebug'
 import ProjectDebug from './ProjectDebug'
+import ListDebug from './ListDebug'
 
 const containerStyle = {
   position: 'absolute',
@@ -76,6 +77,7 @@ const TestInfo = () => {
       </Box>
       <UserDebug/>
       <ProjectDebug/>
+      <ListDebug/>
 
     </Box>
   )

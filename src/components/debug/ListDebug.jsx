@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 
 
 import { useStore } from '../../store'
-import { projectService }from '../../services/jira'
+import { listService }from '../../services/jira'
 
 import { 
   TextField,
@@ -22,34 +22,34 @@ const boxStyle = {
   paddingLeft: '1rem',
   testTransform: 'none'
 }
-const ProjectDebug = () => {
+const ListDebug = () => {
   const [id, setId] = useState('')
+  const [projectId, setProjectId] = useState('')
   const [title, setTitle] = useState('')
-  const projects= useStore((state) => state.projects)
-  const getAllProjects = useStore((state) => state.getAllProjects)
+
 
   return (
     <Box sx={boxStyle}>
-      <Typography>Project</Typography>
+      <Typography>List</Typography>
       <form>
         <label>id</label> <input value={id} onChange={(e)=> setId(e.target.value)}/>
+      </form>
+      <form>
+        <label>projectId</label> <input value={projectId} onChange={(e)=> setProjectId(e.target.value)}/>
       </form>
       <form>
         <label>title</label> <input value={title} onChange={(e)=> setTitle(e.target.value)}/>
       </form>
 
-      <button onClick={() => projectService.create({title: title})}>create</button>
-      <button onClick={() => projectService.get(id)}>get</button>
-      <button onClick={() => projectService.update(id, {title: title})}>update</button>
-      <button onClick={() => projectService.remove(id)}>remove</button>
-      <button onClick={projectService.removeAll} >remove all</button>
-      <button onClick={getAllProjects} >get all</button>
+      <button onClick={() => listService.create({title: title, projectId: projectId})}>create</button>
+      <button onClick={() => listService.get(id)}>get</button>
+      <button onClick={() => listService.update(id, {title: title})}>update</button>
+      <button onClick={() => listService.remove(id)}>remove</button>
+      <button onClick={listService.removeAll} >remove all</button>
+      <button onClick={listService.getAll} >get all</button>
 
-      <pre>
-        {JSON.stringify(projects, null, 2)}
-      </pre>
     </Box>
   )
 }
 
-export default ProjectDebug
+export default ListDebug
