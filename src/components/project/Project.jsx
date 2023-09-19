@@ -22,6 +22,8 @@ import StarButton from './StarButton'
 
 import { useParams } from 'react-router-dom'
 
+import { useStore } from '../../store'
+
 const buttonStyle = {
   height: '35px',
   width: '35px',
@@ -55,16 +57,16 @@ const linkStyle = {
   color: 'text.secondary'
 }
 
-function Project({project}) {
-  const { id } = useParams()
-
+const Project = () => {
+  console.log('rendering project')
+  const project = useStore(state => state.project)
   const onDragEnd = (result) => {
     // dispatch(moveIssue(result, project))
   }
 
   return (
     <Box sx={projectStyle}>
-      { project.id === parseInt(id) && 
+      { project !== null &&
         <Box component='main' >
 
         <Box sx={{display: 'flex', flexDirection: 'row', marginLeft: 0, alignItems: 'center'}}>
@@ -81,7 +83,7 @@ function Project({project}) {
         <Box sx={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
           <Box sx={userSectionStyle}>
               <SearchBar project={project}/>
-              <UserIcons project={project}/>
+              {/* <UserIcons project={project}/> */}
               <InviteButton project={project}/>
           </Box>
           <Box sx={{display: 'flex', flexDirection: 'row'}}>

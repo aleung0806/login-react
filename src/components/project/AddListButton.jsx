@@ -12,7 +12,6 @@ const buttonStyle = {
 }
 
 const AddListButton = ({project}) => {
-  const dispatch = useDispatch()
 
   const submit = (input) => {
     // dispatch(createList({ title: input, projectId: project.id }))

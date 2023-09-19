@@ -41,15 +41,15 @@ const defaultProjects = [
 ]
 
 export const jiraSlice = (set, get) => ({
-    project: {},
+    project: defaultProject,
     projects: defaultProjects,
   
     getAllProjects: async () => {
-      const projects = await ProjectService.getAll()
-      set({projects: projects})
+      // const projects = await ProjectService.getAll()
+      // set({projects: projects})
     },
     getProject: async () => {
-      const project = await ProjectService.get()
-      set({project: project})
+      // const project = await ProjectService.get()
+      // set({project: project})
     }
   })

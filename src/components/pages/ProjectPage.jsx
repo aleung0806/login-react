@@ -22,9 +22,8 @@ const pageStyle = {
 
 const bodyStyle = {
   display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  justifyContent: 'center'
+  flexDirection: 'row',
+  alignItems: 'stretch',
 }
 
 const ProjectPage = () => {
@@ -48,8 +47,6 @@ const ProjectPage = () => {
       if(verifiedUser === null){
         navigate('/login')
       }
-      await getProject()
-      await getAllProjects()
 
       setSessionVerified(true)
     }
@@ -57,17 +54,23 @@ const ProjectPage = () => {
   }, [])
 
   useEffect(() => {
-    if(user === null && sessionVerified){
-      navigate('/login')
-    }
+    (async () => {
+      if(user === null && sessionVerified){
+        navigate('/login')
+      }
+      
+      await getProject(1)
+      await getAllProjects()
+      
+    })()
   }, [user])
 
   return (
     <Box sx={pageStyle}>
       <NavBar/>
       <Box sx={bodyStyle}>
-        <SideMenu project={project}/>
-        <Project project={project}/>
+        {/* <SideMenu />
+        <Project /> */}
       </Box>
       <TestInfo/>
       <NetworkInfo/>

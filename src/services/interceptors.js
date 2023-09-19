@@ -2,8 +2,6 @@ import { useStore } from '../store'
 
 const addDebugInterceptor = (api) => {
   api.interceptors.request.use((config) => {
-    console.log('config', config)
-
     useStore.getState().setRequest(
       {
         url: config.url,
@@ -19,7 +17,6 @@ const addDebugInterceptor = (api) => {
   });
   
   api.interceptors.response.use((response) => {
-    console.log('response', response)
     useStore.getState().setResponse({
       status: response.status,
       statusText: response.statusText,
