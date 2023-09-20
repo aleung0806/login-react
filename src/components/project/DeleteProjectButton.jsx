@@ -6,25 +6,26 @@ import {
  } from '@mui/material'
 import DeleteIcon from '@mui/icons-material/Delete'
 import { projectService } from '../../services/jira'
+
 import DeleteModal from '../reusable/DeleteModal'
 import { useStore } from '../../store'
 
-const DeleteProjectButton = ({project}) => {
+const DeleteProjectButton = () => {
   const [open, setOpen] = useState(false)
 
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
 
   const refreshSession = useStore(state => state.refreshSession)
-  const setProject = useStore(state => state.setProject)
+  const getProject = useStore(state => state.getProject)
   const user = useStore(state => state.user)
+  const project = useStore(state => state.project)
 
 
   const handleDelete = async () => {
     await projectService.remove(project.id)
-    await setProject(user.projects[0])
     await refreshSession()
-
+    await getProject(user.projects[0])
   }
 
   const Message = () => {

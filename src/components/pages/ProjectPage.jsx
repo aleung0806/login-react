@@ -6,8 +6,7 @@ import {
 
 import { useStore } from '../../store'
 
-import TestInfo from '../debug/TestInfo'
-import NetworkInfo from '../debug/NetworkInfo'
+
 import SideMenu from '../sideMenu/SideMenu'
 import NavBar from '../navBar/NavBar'
 import Project from '../project/Project'
@@ -40,7 +39,6 @@ const ProjectPage = () => {
   const getProject = useStore(state => state.getProject)
   const getAllProjects = useStore(state => state.getAllProjects)
 
-
   const [ sessionVerified, setSessionVerified ] = useState(false)
 
   useEffect(() => {
@@ -61,8 +59,9 @@ const ProjectPage = () => {
         navigate('/login')
       }
       if(user !== null){
-        if (user.projects !== []){
+        if (user.projects !== [] && project === null){
           await getProject(user.projects[0].id)
+          console.log('resetting')
         }
       }
       
@@ -77,14 +76,13 @@ const ProjectPage = () => {
         <NavBar/>
         <Box sx={bodyStyle}>
           <SideMenu />
-          <Project />
+          <Project project={project}/>
         </Box>
         
-        {/* <TestInfo/>
-        <NetworkInfo/> */}
+
       </Box>
       }
-      
+
     </Box>
     
   )

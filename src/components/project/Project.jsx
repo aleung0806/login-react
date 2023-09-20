@@ -57,9 +57,9 @@ const linkStyle = {
   color: 'text.secondary'
 }
 
-const Project = () => {
+const Project = ({project}) => {
   console.log('rendering project')
-  const project = useStore(state => state.project)
+  //const project = useStore(state => state.project)
   const onDragEnd = (result) => {
     // dispatch(moveIssue(result, project))
   }
@@ -76,7 +76,7 @@ const Project = () => {
         </Box>
         <Box sx={{display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 1}}>
           <StarButton project={project}/>
-          <DeleteProjectButton project={project}/>
+          <DeleteProjectButton />
         </Box>
       </Box>
       <Box sx={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>

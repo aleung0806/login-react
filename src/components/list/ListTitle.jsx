@@ -1,4 +1,6 @@
 import ControlledForm from  '../reusable/ControlledForm'
+import { listService } from '../../services/jira'
+import { useStore } from '../../store'
 
 const inputStyle = {
   fontWeight: 500,
@@ -9,8 +11,8 @@ const inputStyle = {
 
 const ListTitle = ({list}) => {
 
-  const submit = (input) => {
-    // dispatch(updateList({...list, title: input}))
+  const submit = async (input) => {
+    await listService.update(list.id, {title: input})
   }
 
   return (

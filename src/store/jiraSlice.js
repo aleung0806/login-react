@@ -51,6 +51,7 @@ export const jiraSlice = (set, get) => ({
 
   getProject: async (id) => {
     const project = await projectService.get(id)
+    console.log('setting project', id)
     set({project: project})
   },
 

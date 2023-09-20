@@ -1,6 +1,8 @@
 import AddRoundedIcon from '@mui/icons-material/AddRounded'
-
 import ClickToAdd from '../reusable/ClickToAdd'
+import { issueService, listService } from '../../services/jira'
+import { useStore } from '../../store'
+import userEvent from '@testing-library/user-event'
 
 const inputStyle = {
   flexDirection: 'column',
@@ -25,16 +27,19 @@ const buttonStyle = {
 }
 
 const AddIssueButton = ({list}) => {
-
-  const submit = (input) => {
-    // dispatch(createIssue({ 
-    //   title: input, 
-    //   listId: list.id, 
-    //   projectId: list.projectId,
-    //   type: 'bug',
-    //   priority: 'medium',
-    //   status: 'in progress'
-    // }))
+  const user = useStore (state => state.user)
+  const submit = async (input) => {
+    const newIssue = await issueService.create({
+      title: input, 
+      projectId: list.projectId,
+      listId: list.id,
+      type: 'bug',
+      priority: 'medium',
+      status: 'in progress',
+      creatorId: user.id
+    })
+    console.log(newIssue.id)
+    await listService.update(list.id, {issueOrder: list.issueOrder.push(newIssue.id)})
   }
   const ButtonIcon = () => < AddRoundedIcon />
 

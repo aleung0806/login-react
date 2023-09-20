@@ -5,7 +5,8 @@ import {
   Box
  } from '@mui/material'
 import DeleteIcon from '@mui/icons-material/Delete'
-
+import { listService } from '../../services/jira'
+import { useStore } from '../../store'
 import DeleteModal from '../reusable/DeleteModal'
 
 const DeleteListButton = ({list}) => {
@@ -13,8 +14,8 @@ const DeleteListButton = ({list}) => {
 
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
-  const handleDelete= () => {
-    // dispatch(deleteList(list))
+  const handleDelete= async () => {
+    await listService.remove(list.id)
   }
 
   const Message = () => {

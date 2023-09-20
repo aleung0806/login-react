@@ -15,16 +15,13 @@ import { useStore } from '../../store'
 const ProjectsList = () => {
   const projects = useStore(state => state.user.projects)
   const navigate = useNavigate()
-
-  const redirectHandler = (projectId) => {
-    navigate(`/project/${projectId}`)
-  }
+  const getProject = useStore(state => state.getProject)
 
   return (
     <Box sx={{display: 'flex', flexDirection: 'column', paddingLeft: '10px', paddingTop: '10px'}}>
       {projects.map(project => {
         return (
-          <Button sx={{justifyContent: 'flex-start', alignItems: 'flex-start'}} key={project.id} onClick={() => redirectHandler(project.id)} >
+          <Button sx={{justifyContent: 'flex-start', alignItems: 'flex-start'}} key={project.id} onClick={() => getProject(project.id)} >
             
             <Typography sx={{textTransform: 'none'}}>{project.title}</Typography>
           
