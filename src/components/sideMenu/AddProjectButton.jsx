@@ -6,6 +6,7 @@ import {
   Modal
  } from '@mui/material'
 import AddRoundedIcon from '@mui/icons-material/AddRounded'
+import { projectService } from '../../services/jira'
 
 import ClickToAdd from '../reusable/ClickToAdd'
 
@@ -16,9 +17,16 @@ const buttonStyle = {
 }
 
 const AddProjectButton = () => {
+  const user = useStore(state => state.user)
+  const project = useStore(state => state.project)
 
-  const submit = (input) => {
-    //ispatch(createProject({title: input}))
+  const refreshSession = useStore(state => state.refreshSession)
+  const getProject = useStore(state => state.getProject)
+
+  const submit = async (input) => { 
+    const newProject = await projectService.create({title: input})
+    await projectRoleService.create({projectId: newProject.id, role: 'admin', userId: user.id})
+    await refreshSession()
   }
 
   const ButtonIcon = () => {

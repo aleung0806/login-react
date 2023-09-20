@@ -15,6 +15,7 @@ import {
 import Settings from '@mui/icons-material/Settings'
 import Logout from '@mui/icons-material/Logout'
 import { useStore } from '../../store'
+import authService from '../../services/auth'
 import InitialsAvatar from '../reusable/InitialsAvatar'
 import { useNavigate } from 'react-router-dom'
 const avatarStyles = {
@@ -29,9 +30,9 @@ const AccountButton = ()  => {
   const user = useStore(state => state.user)
 
   const [open, setOpen] = useState(false)
-  const logoutHandler = () => {
+  const logoutHandler = async () => {
 
-    // dispatch(logout())
+    await authService.logout()
     navigate('/login')
   }
 

@@ -25,6 +25,11 @@ export const authSlice = (set, get) => ({
       set({ user: verifiedUser })
       return verifiedUser
     },
+    refreshSession: async () => {
+      const verifiedUser = await authService.refreshSession()
+      set({ user: verifiedUser })
+      return verifiedUser
+    },
     login: async (email, password) => {
       const verifiedUser = await authService.login(email, password)
       set({ user: verifiedUser })
@@ -44,5 +49,6 @@ export const authSlice = (set, get) => ({
       const users = await userService.getAll()
       set({allUsers: users})
     },
+
   
   })

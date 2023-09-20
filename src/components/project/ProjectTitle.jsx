@@ -1,5 +1,6 @@
 import { useStore } from '../../store'
 import ControlledForm from '../reusable/ControlledForm'
+import { projectService } from '../../services/jira'
 
 const inputStyle = {
   fontSize: '24px', 
@@ -8,16 +9,19 @@ const inputStyle = {
 
 const ProjectTitle = () => {
   const project = useStore(state => state.project)
-  const submit = (input) => {
-    // dispatch(updateProject({id: project.id, title: input}))
-  }
+  const refreshSession = useStore(state => state.refreshSession)
 
-  return (
+
+  const submit = async (input) => {
+    await projectService.update(project.id, { title: input})
+    await refreshSession()
+
+  }
+  return (  
     <ControlledForm 
       defaultInput={project.title} 
       submit={submit} 
       inputStyle={inputStyle} 
-
     />
   )
 }

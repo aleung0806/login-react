@@ -1,25 +1,30 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { 
   Typography,
   IconButton,
   Box
  } from '@mui/material'
 import DeleteIcon from '@mui/icons-material/Delete'
-
+import { projectService } from '../../services/jira'
 import DeleteModal from '../reusable/DeleteModal'
 import { useStore } from '../../store'
 
 const DeleteProjectButton = ({project}) => {
-  const navigate = useNavigate()
-  const projects = useStore(state => state.allProjects)
   const [open, setOpen] = useState(false)
 
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
-  const handleDelete = () => {
-    dispatch(deleteProject(project.id))
-    navigate(`/project/${projects[0].id}`)
+
+  const refreshSession = useStore(state => state.refreshSession)
+  const setProject = useStore(state => state.setProject)
+  const user = useStore(state => state.user)
+
+
+  const handleDelete = async () => {
+    await projectService.remove(project.id)
+    await setProject(user.projects[0])
+    await refreshSession()
+
   }
 
   const Message = () => {

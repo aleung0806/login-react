@@ -76,6 +76,7 @@ const SideMenu = () => {
           <Box sx={contentStyle(open)}>
             <Header title={project.title}/>
             <Sections project={project}/>
+            <ProjectsList/>
           </Box>
           <Box sx={{ marginTop: '24px', marginRight: '-22px', width: '44px', height: '40px', display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', inset: '-8px -12px -8px -8px'}}>
             <IconButton onClick={handleDrawer} sx={iconStyle(open)}>

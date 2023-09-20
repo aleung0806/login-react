@@ -13,7 +13,7 @@ import AddProjectButton from './AddProjectButton'
 import { useStore } from '../../store'
 
 const ProjectsList = () => {
-  const projects = useStore(state => state.allProjects)
+  const projects = useStore(state => state.user.projects)
   const navigate = useNavigate()
 
   const redirectHandler = (projectId) => {

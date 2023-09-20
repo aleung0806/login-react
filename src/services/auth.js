@@ -24,6 +24,14 @@ const verifySession = async () => {
   return null
 }
 
+const refreshSession = async () => {
+  const response = await api.get('/refresh')
+  if (response.status === 200){
+    return response.data
+  }
+  return null
+}
+
 const logout = async () => {
   const response = await api.post('/logout')
   if (response.status === 200){
@@ -47,4 +55,5 @@ export default {
   logout,
   register,
   verifySession,
+  refreshSession
 }
