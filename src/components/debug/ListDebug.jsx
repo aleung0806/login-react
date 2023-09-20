@@ -27,7 +27,6 @@ const ListDebug = () => {
   const [projectId, setProjectId] = useState('')
   const [title, setTitle] = useState('')
 
-
   return (
     <Box sx={boxStyle}>
       <Typography>List</Typography>

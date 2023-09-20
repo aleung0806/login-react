@@ -1,6 +1,3 @@
-import { useDispatch } from 'react-redux'
-
-import { updateList } from '../../reducers/project'
 import ControlledForm from  '../reusable/ControlledForm'
 
 const inputStyle = {
@@ -11,10 +8,9 @@ const inputStyle = {
 }
 
 const ListTitle = ({list}) => {
-  const dispatch = useDispatch()
 
   const submit = (input) => {
-    dispatch(updateList({...list, title: input}))
+    // dispatch(updateList({...list, title: input}))
   }
 
   return (

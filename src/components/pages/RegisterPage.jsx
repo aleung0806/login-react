@@ -10,7 +10,8 @@ import RegisterForm from '../auth/RegisterFormSimple'
 import Footer from '../auth/Footer'
 import RegisterConfirmation from '../auth/RegisterConfirmation'
 
-
+import TestInfo from '../debug/TestInfo'
+import NetworkInfo from '../debug/NetworkInfo'
 import { 
   TextField,
   Input,
@@ -59,6 +60,8 @@ export const RegisterPage = () => {
   
   return (
     <Box sx={style.page}>
+      <TestInfo/>
+      <NetworkInfo/>
       <Box sx={style.modal}>
         {sent === '' 
         ? ( <Box sx={style.container}>

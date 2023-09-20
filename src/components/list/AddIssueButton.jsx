@@ -1,8 +1,6 @@
-import { useDispatch } from 'react-redux'
 import AddRoundedIcon from '@mui/icons-material/AddRounded'
 
 import ClickToAdd from '../reusable/ClickToAdd'
-import { createIssue } from '../../reducers/project'
 
 const inputStyle = {
   flexDirection: 'column',
@@ -27,17 +25,16 @@ const buttonStyle = {
 }
 
 const AddIssueButton = ({list}) => {
-  const dispatch = useDispatch()
 
   const submit = (input) => {
-    dispatch(createIssue({ 
-      title: input, 
-      listId: list.id, 
-      projectId: list.projectId,
-      type: 'bug',
-      priority: 'medium',
-      status: 'in progress'
-    }))
+    // dispatch(createIssue({ 
+    //   title: input, 
+    //   listId: list.id, 
+    //   projectId: list.projectId,
+    //   type: 'bug',
+    //   priority: 'medium',
+    //   status: 'in progress'
+    // }))
   }
   const ButtonIcon = () => < AddRoundedIcon />
 

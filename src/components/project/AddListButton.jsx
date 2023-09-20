@@ -1,4 +1,5 @@
 import AddRoundedIcon from '@mui/icons-material/AddRounded'
+import { listService } from '../../services/jira'
 
 import ClickToAdd from '../reusable/ClickToAdd'
 
@@ -13,8 +14,8 @@ const buttonStyle = {
 
 const AddListButton = ({project}) => {
 
-  const submit = (input) => {
-    // dispatch(createList({ title: input, projectId: project.id }))
+  const submit = async (input) => {
+    await listService.create({ title: input, projectId: project.id })
   }
   const ButtonIcon = () => < AddRoundedIcon fontSize="large" />
 

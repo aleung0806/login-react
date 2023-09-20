@@ -17,13 +17,15 @@ const pageStyle = {
   display: 'flex',
   flexDirection: 'column',
   height: '100vh',
-  alignItems: 'stretch'
+  alignItems: 'stretch',
+
+  
 }
 
 const bodyStyle = {
+  height: '100%',
   display: 'flex',
   flexDirection: 'row',
-  alignItems: 'stretch',
 }
 
 const ProjectPage = () => {
@@ -58,23 +60,33 @@ const ProjectPage = () => {
       if(user === null && sessionVerified){
         navigate('/login')
       }
-      
-      await getProject(1)
-      await getAllProjects()
+      if(user !== null){
+        if (user.projects !== []){
+          await getProject(user.projects[0].id)
+        }
+      }
       
     })()
   }, [user])
 
   return (
-    <Box sx={pageStyle}>
-      <NavBar/>
-      <Box sx={bodyStyle}>
-        {/* <SideMenu />
-        <Project /> */}
+    
+    <Box >
+      {user !== null && project !== null &&
+      <Box sx={pageStyle} >
+        <NavBar/>
+        <Box sx={bodyStyle}>
+          <SideMenu />
+          <Project />
+        </Box>
+        
+        {/* <TestInfo/>
+        <NetworkInfo/> */}
       </Box>
-      <TestInfo/>
-      <NetworkInfo/>
+      }
+      
     </Box>
+    
   )
 }
 

@@ -1,6 +1,6 @@
 import axios from 'axios'
-import addDebugInterceptor from './interceptors';
-
+import { addDebugInterceptor }from './interceptors';
+import { useStore } from '../store'
 const actions = ['getById', 'getAll', 'create', 'update', 'remove']
 const resources = ['project', 'list', 'issue', 'role']
 
@@ -11,11 +11,20 @@ const api  = axios.create({
 
 addDebugInterceptor(api)
 
+
+const callGetProject = async () => {
+  const { project, getProject } =  useStore.getState()
+  if (project !== null){
+    await getProject(project.id)
+  }
+}
+
 export const customService = (path) => {
   
   const create = async (element) => {
     const response = await api.post(path, element)
     if (response.status === 201){
+      callGetProject()
       return response.data
     }
     return null
@@ -32,6 +41,7 @@ export const customService = (path) => {
   const getAll = async () => {
     const response = await api.get(path)
     if (response.status === 200){
+      callGetProject()
       return response.data
     }
     return null  
@@ -40,6 +50,7 @@ export const customService = (path) => {
   const update = async (id, element) => {
     const response = await api.patch(`${path}/${id}`, element)
     if (response.status === 200){
+      callGetProject()
       return response.data
     }
     return null  }
@@ -47,6 +58,7 @@ export const customService = (path) => {
   const remove = async (id) => {
     const response = await api.delete(`${path}/${id}`)
     if (response.status === 204){
+      callGetProject()
       return response.data
     }
     return null  
@@ -55,6 +67,7 @@ export const customService = (path) => {
   const removeAll = async (id) => {
     const response = await api.delete(path)
     if (response.status === 204){
+      callGetProject()  
       return response.data
     }
     return null  

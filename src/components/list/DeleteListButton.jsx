@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
 import { 
   Typography,
   IconButton,
@@ -7,17 +6,15 @@ import {
  } from '@mui/material'
 import DeleteIcon from '@mui/icons-material/Delete'
 
-import { deleteList } from '../../reducers/project'
 import DeleteModal from '../reusable/DeleteModal'
 
 const DeleteListButton = ({list}) => {
-  const dispatch = useDispatch()
   const [open, setOpen] = useState(false)
 
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
   const handleDelete= () => {
-    dispatch(deleteList(list))
+    // dispatch(deleteList(list))
   }
 
   const Message = () => {

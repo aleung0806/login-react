@@ -1,5 +1,5 @@
 import axios from 'axios'
-import addDebugInterceptor from './interceptors';
+import { addDebugInterceptor }from './interceptors';
 
 const api  = axios.create({
   baseURL: "http://localhost:3001",
@@ -33,6 +33,7 @@ const logout = async () => {
 }
 
 const register = async (email, password) => {
+  console.log('sending register')
   const response = await api.post('/register', {email: email, password: password, username: email})
   if (response.status === 201){
     return response.data

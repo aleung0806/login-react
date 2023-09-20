@@ -83,9 +83,8 @@ const SideMenu = () => {
             </IconButton>
           </Box>
           {/* <Box sx={{...borderStyle, flex: 4}}/> */}
-
+      
       </Box>
-
     </Box>
   )
 }

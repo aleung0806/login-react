@@ -18,7 +18,7 @@ import SortByDropdown from './SortByDropdown'
 import GroupByDropdown from './GroupByDropdown'
 import StarButton from './StarButton'
 
-// import List from "./list/List"
+import List from "../list/List"
 
 import { useParams } from 'react-router-dom'
 
@@ -66,39 +66,37 @@ const Project = () => {
 
   return (
     <Box sx={projectStyle}>
-      { project !== null &&
-        <Box component='main' >
+      <Box component='main' >
 
-        <Box sx={{display: 'flex', flexDirection: 'row', marginLeft: 0, alignItems: 'center'}}>
-          <Box sx={{display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 1}}>
+      <Box sx={{display: 'flex', flexDirection: 'row', marginLeft: 0, alignItems: 'center'}}>
+        <Box sx={{display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 1}}>
 
-            <ProjectTitle project={project}/>
+          <ProjectTitle project={project}/>
 
-          </Box>
-          <Box sx={{display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 1}}>
-            <StarButton project={project}/>
-            <DeleteProjectButton project={project}/>
-          </Box>
         </Box>
-        <Box sx={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
-          <Box sx={userSectionStyle}>
-              <SearchBar project={project}/>
-              {/* <UserIcons project={project}/> */}
-              <InviteButton project={project}/>
-          </Box>
-          <Box sx={{display: 'flex', flexDirection: 'row'}}>
-            <GroupByDropdown project={project}/>
-            <SortByDropdown project={project}/>
-          </Box>
-        </Box>
-      <Box sx={listAreaStyle}>
-          <DragDropContext onDragEnd={onDragEnd} >
-              {/* {project.lists !== null && project.lists.map((list) => <List listContent={list} key={list.id}/>)} */}
-          </DragDropContext>
-          <AddListButton project={project}/>
+        <Box sx={{display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 1}}>
+          <StarButton project={project}/>
+          <DeleteProjectButton project={project}/>
         </Box>
       </Box>
-    }
+      <Box sx={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
+        <Box sx={userSectionStyle}>
+            <SearchBar project={project}/>
+            <UserIcons project={project}/>
+            <InviteButton project={project}/>
+        </Box>
+        <Box sx={{display: 'flex', flexDirection: 'row'}}>
+          <GroupByDropdown project={project}/>
+          <SortByDropdown project={project}/>
+        </Box>
+      </Box>
+    <Box sx={listAreaStyle}>
+        <DragDropContext onDragEnd={onDragEnd} >
+            {project.lists !== null && project.lists.map((list) => <List listContent={list} key={list.id}/>)}
+        </DragDropContext>
+        <AddListButton project={project}/>
+      </Box>
+    </Box>
     </Box>
   )
 }

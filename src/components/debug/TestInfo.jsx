@@ -19,6 +19,7 @@ import { useLoggedInUser } from 'hooks/useLoggedInUser'
 import UserDebug from './UserDebug'
 import ProjectDebug from './ProjectDebug'
 import ListDebug from './ListDebug'
+import ProjectRoleDebug from './ProjectRoleDebug'
 
 const containerStyle = {
   position: 'absolute',
@@ -59,7 +60,7 @@ const TestInfo = () => {
   const [cookies, setCookie, removeCookie] = useCookies();
 
   const loginTurkey= async () => {
-    await login('testerturkey@gmail.com', 'password')
+    await login('turkey@cat.com', 'password')
   }
 
   return (
@@ -76,6 +77,7 @@ const TestInfo = () => {
         </pre>
       </Box>
       <UserDebug/>
+      <ProjectRoleDebug/>
       <ProjectDebug/>
       <ListDebug/>
 

@@ -1,6 +1,6 @@
 import { useStore } from '../store'
 
-const addDebugInterceptor = (api) => {
+export const addDebugInterceptor = (api) => {
   api.interceptors.request.use((config) => {
     useStore.getState().setRequest(
       {
@@ -28,5 +28,3 @@ const addDebugInterceptor = (api) => {
   });
 }
 
-
-export default addDebugInterceptor
