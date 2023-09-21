@@ -49,7 +49,7 @@ const PriorityDropdown = ({ issue }) => {
 
   const handleSelect = async (selection) => {
     document.activeElement.blur()
-    await issueService.update(issue.id, {priority: selection.priority})
+    await issueService.update(issue.id, {priority: selection})
   }
   return (
     <Box>

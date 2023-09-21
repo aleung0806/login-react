@@ -55,7 +55,7 @@ const AssignedToDropdown = ({ issue }) => {
 
   const handleSelect = async (selected) => {
     document.activeElement.blur()
-    await issueService.update(issue.id, {assignedTo: selection.id})
+    await issueService.update(issue.id, {assigneeId: selected})
   }
   return (
     <Box>
@@ -66,7 +66,7 @@ const AssignedToDropdown = ({ issue }) => {
             ? <Typography sx={buttonTextStyle}>{'not assigned'}</Typography>
             : <Box sx = {menuItemStyle}>
                 <InitialsAvatar  sx={avatarStyle} user={assignedTo}/> 
-                <Typography sx={buttonTextStyle}>{`${assignedTo.firstName} ${assignedTo.lastName}`}</Typography>
+                <Typography sx={buttonTextStyle}>{`${assignedTo.username} `}</Typography>
               </Box>
           }
         </Button >
@@ -77,7 +77,7 @@ const AssignedToDropdown = ({ issue }) => {
             return (
               <MenuItem key={selection.id} sx={menuItemStyle} onClick={() => handleSelect(selection.id)}>
                 <InitialsAvatar  sx={avatarStyle} user={selection}/> 
-                <Typography sx={buttonTextStyle}>{`${selection.firstName} ${selection.lastName}`}</Typography>
+                <Typography sx={buttonTextStyle}>{`${selection.username} `}</Typography>
               </MenuItem>
             )
           })}

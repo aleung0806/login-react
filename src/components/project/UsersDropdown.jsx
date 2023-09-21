@@ -66,7 +66,7 @@ const AssignedToDropdown = ({ issue }) => {
             return (
               <MenuItem key={selection.id} sx={menuItemStyle} onClick={() => handleSelect(selection.id)}>
                 <InitialsAvatar  sx={avatarStyle} user={selection}/> 
-                <Typography sx={buttonTextStyle}>{`${selection.firstName} ${selection.lastName}`}</Typography>
+                <Typography sx={buttonTextStyle}>{`${selection.username}`}</Typography>
               </MenuItem>
             )
           })}

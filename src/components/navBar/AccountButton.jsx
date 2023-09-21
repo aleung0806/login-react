@@ -74,7 +74,7 @@ const AccountButton = ()  => {
           <MenuItem sx={{display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 2}}>
             <InitialsAvatar sx={avatarStyles} user={user}/>
             <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start'}}>
-              <Typography sx={{fontSize: 16}}>{user.firstName} {user.lastName}</Typography>
+              <Typography sx={{fontSize: 16}}>{user.username}</Typography>
               <Typography sx={{fontSize: 10, color: 'primary.light'}}>{user.email}</Typography>
             </Box>
           </MenuItem>
