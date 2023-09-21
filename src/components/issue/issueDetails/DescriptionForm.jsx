@@ -2,19 +2,19 @@ import {
   Typography,
   Box,
  } from '@mui/material'
-
-import { useDispatch } from 'react-redux'
-import { updateIssue } from '../../../reducers/project'
 import ControlledForm from '../../reusable/ControlledForm'
+import { useStore } from '../../../store'
+import { issueService } from '../../../services/jira'
 
 const inputStyle = {
   font: '12px',
 }
 
 const DescriptionForm = ({issue}) => {
-  const dispatch = useDispatch()
 
-  const submit = (input) => { dispatch(updateIssue({ ...issue, description: input })) }
+  const submit = async (input) => { 
+    await issueService.update(issue.id, {description: input})
+  }
 
   return (
     <Box>

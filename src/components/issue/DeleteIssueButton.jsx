@@ -1,21 +1,19 @@
 
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
 import { 
   Typography, 
   Box,
   MenuItem,
  } from '@mui/material'
-import { deleteIssue } from '../../reducers/project'
 import DeleteModal from '../reusable/DeleteModal'
-
+import { useStore } from '../../store'
+import { issueService } from '../../services/jira'
 const buttonStyle = {
   display: 'flex', 
   flexDirection: 'row', 
   justifyContent: 'flex-start',
 }
 const DeleteIssueButton = ({issue, closeMenu}) => {
-  const dispatch = useDispatch()
   const [open, setOpen] = useState(false)
 
   const handleOpen = () => {
@@ -25,8 +23,9 @@ const DeleteIssueButton = ({issue, closeMenu}) => {
     setOpen(false)
     closeMenu()
   }
-  const handleDelete= () => {
-    dispatch(deleteIssue(issue))
+  const handleDelete= async () => {
+    await issueService.remove(issue.id)
+
   }
 
   const Message = () => {

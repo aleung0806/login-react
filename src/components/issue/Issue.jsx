@@ -12,8 +12,7 @@ import IssueTitle from './IssueTitle'
 
 import TypeIcon from '../reusable/TypeIcon'
 import InitialsAvatar from '../reusable/InitialsAvatar'
-import { useSelector } from 'react-redux'
-
+import { useStore } from '../../store'
 
 
 const headerStyle = {
@@ -57,7 +56,7 @@ const avatarStyle = {
 }
 
 const Issue = ({ issue, index }) => {
-  const users = useSelector(state => state.project.users)
+  const users = useStore(state => state.project.users)
   const assignedTo = issue.assigneeId === null 
     ? null
     : users.find(user => user.id === issue.assigneeId)
@@ -79,6 +78,7 @@ const Issue = ({ issue, index }) => {
               <Box sx={footerStyle}>
                   <TypeIcon type={issue.type}/>
                   <Box sx={{display: 'flex', gap: 1}}>
+                  {console.log('issue', issue)}
                   {assignedTo === null
                     ? <Typography sx={buttonTextStyle}>{'not assigned'}</Typography>
                     : <Box>

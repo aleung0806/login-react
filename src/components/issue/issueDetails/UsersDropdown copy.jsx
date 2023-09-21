@@ -9,11 +9,12 @@ import {
   Menu,
   MenuItem,
  } from '@mui/material'
+ import { useStore } from '../../../store'
+ import { issueService } from '../../../services/jira'
 
 import Dropdown from '../../reusable/Dropdown'
 import { useState } from 'react'
 import InitialsAvatar from '../../reusable/InitialsAvatar'
-import { useSelector } from 'react-redux'
 import { useResolvedPath } from 'react-router-dom'
 const dropdownButtonStyle = {
 
@@ -49,8 +50,7 @@ const avatarStyle = {
 }
 
 const UsersDropdown = ({issue}) => {
-  const users = useSelector(state => state.project.users)
-  console.log('users are', users)
+  const users = useStore(state => state.project.users)
   const [anchor, setAnchor] = useState(null)
 
   const handleOpen = (e) => { setAnchor(e.currentTarget)}

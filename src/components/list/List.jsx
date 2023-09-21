@@ -2,6 +2,7 @@ import { Droppable } from "react-beautiful-dnd"
 import DeleteListButton from './DeleteListButton'
 import AddIssueButton from './AddIssueButton'
 import ListTitle from './ListTitle'
+import Issue from '../issue/Issue'
 
 import {
   Box
@@ -43,9 +44,9 @@ const List = ({listContent}) => {
         {(provided) => {
           return (
           <div {...provided.droppableProps} ref={provided.innerRef}>
-            {/* {issues.map((issue, index) => {
+            {issues.map((issue, index) => {
               return <Issue key={issue.id} issue={issue} index={index} />
-            })} */}
+            })}
             {provided.placeholder}
           </div>)
         }}

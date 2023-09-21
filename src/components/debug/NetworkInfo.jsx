@@ -18,7 +18,6 @@ import { useLoggedInUser } from 'hooks/useLoggedInUser'
 
 
 const NetworkInfo = () => {
-
   const request = useStore((state) => state.request)
   const response = useStore((state) => state.response)
 

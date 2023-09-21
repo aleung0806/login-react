@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { useStore } from '../../store'
 
 import Dropdown from '../reusable/Dropdown'
 import {

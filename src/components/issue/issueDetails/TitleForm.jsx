@@ -1,9 +1,10 @@
 import { 
   Box,
  } from '@mui/material'
+ import { useStore } from '../../../store'
+ import { issueService } from '../../../services/jira'
 
-import { useDispatch } from 'react-redux'
-import { updateIssue } from '../../../reducers/project'
+
 import ControlledForm from '../../reusable/ControlledForm'
 
 const inputStyle = {
@@ -13,9 +14,10 @@ const inputStyle = {
 }
 
 const TitleForm = ({issue}) => {
-  const dispatch = useDispatch()
 
-  const submit = (input) => { dispatch(updateIssue({ ...issue, title: input })) }
+  const submit = async (input) => {
+    await issueService.update(issue.id, {title: input})
+  }
   
   return (
     <Box>

@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { updateIssue } from '../../../reducers/project'
+import { useStore } from '../../../store'
+import { issueService } from '../../../services/jira'
 
 import {
   Box,
@@ -46,17 +46,16 @@ const menuItemStyle = {
 
 const AssignedToDropdown = ({ issue }) => {
   const [anchor, setAnchor] = useState(null)
-  const dispatch = useDispatch()
-  const selections = useSelector(state => state.project.users)
+  const selections = useStore(state => state.project.users)
   const assignedTo = issue.assigneeId === null
     ? null
     : selections.find(user => user.id === issue.assigneeId)
   const handleOpen = (e) => { setAnchor(e.currentTarget) }
   const handleClose = () => { setAnchor(null) }
 
-  const handleSelect = (selected) => {
+  const handleSelect = async (selected) => {
     document.activeElement.blur()
-    dispatch(updateIssue({ ...issue, assigneeId: selected }))
+    await issueService.update(issue.id, {assignedTo: selection.id})
   }
   return (
     <Box>

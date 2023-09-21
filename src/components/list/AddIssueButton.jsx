@@ -38,8 +38,8 @@ const AddIssueButton = ({list}) => {
       status: 'in progress',
       creatorId: user.id
     })
-    console.log(newIssue.id)
-    await listService.update(list.id, {issueOrder: list.issueOrder.push(newIssue.id)})
+    const newIssueOrder = [...list.issues, newIssue.id]
+    await listService.update(list.id, {issueOrder: newIssueOrder})
   }
   const ButtonIcon = () => < AddRoundedIcon />
 

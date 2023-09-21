@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { updateIssue } from '../../../reducers/project'
+import { useStore } from '../../../store'
+import { issueService } from '../../../services/jira'
 
 import {
   Box,
@@ -43,14 +43,13 @@ const selections = ['lowest', 'low', 'medium', 'high', 'highest'].reverse()
 
 const PriorityDropdown = ({ issue }) => {
   const [anchor, setAnchor] = useState(null)
-  const dispatch = useDispatch()
 
   const handleOpen = (e) => { setAnchor(e.currentTarget) }
   const handleClose = () => { setAnchor(null) }
 
-  const handleSelect = (selection) => {
+  const handleSelect = async (selection) => {
     document.activeElement.blur()
-    dispatch(updateIssue({ ...issue, priority: selection }))
+    await issueService.update(issue.id, {priority: selection.priority})
   }
   return (
     <Box>

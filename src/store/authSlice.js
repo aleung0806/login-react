@@ -12,10 +12,13 @@ export const authSlice = (set, get) => ({
 
     //debug
     setRequest: async (request) => {
+      console.log('request: ', request)
+
       set({request: request})
     },
   
     setResponse: async (response) => {
+      console.log('response: ', response)
       set({response: response})
     },
   

@@ -1,6 +1,5 @@
-import { useDispatch } from 'react-redux'
-
-import { updateIssue } from '../../reducers/project'
+import { useStore } from '../../store'
+import { issueService } from '../../services/jira'
 import ControlledForm from '../reusable/ControlledForm'
 
 const inputStyle = {
@@ -9,9 +8,8 @@ const inputStyle = {
 }
 
 const IssueTitle = ({issue}) => {
-  const dispatch = useDispatch()
-  const submit = (input) => {
-    dispatch(updateIssue({...issue, title: input}))
+  const submit = async (input) => {
+    await issueService.update(issue.id, {title: input})
   }
 
   return (

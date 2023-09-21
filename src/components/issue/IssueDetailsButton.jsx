@@ -12,8 +12,8 @@ import {
 
 
 import TypeIcon from '../reusable/TypeIcon'
+import { useStore } from '../../store'
 
-import { useDispatch } from 'react-redux'
 
 import AtlasIcon from '../reusable/AtlasIcon'
 import {ReactComponent as Cross} from '@atlaskit/icon/svgs/cross.svg'
