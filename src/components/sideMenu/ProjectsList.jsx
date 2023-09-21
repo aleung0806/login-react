@@ -18,7 +18,7 @@ const ProjectsList = () => {
   const getProject = useStore(state => state.getProject)
 
   return (
-    <Box sx={{display: 'flex', flexDirection: 'column', paddingLeft: '10px', paddingTop: '10px'}}>
+    <Box sx={{display: 'flex', flexDirection: 'column', paddingTop: '10px', width: 'auto'}}>
       {projects.map(project => {
         return (
           <Button sx={{justifyContent: 'flex-start', alignItems: 'flex-start'}} key={project.id} onClick={() => getProject(project.id)} >

@@ -13,7 +13,7 @@ return (
       <BoardIcon/>
     </Box>
     
-  </Box>
+  </Box>  
 )
 }
 

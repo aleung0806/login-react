@@ -18,7 +18,6 @@ import Sections from './Sections'
 
 import { useStore } from '../../store'
 
-
 const drawerStyle = (open) => {
   return {
     display: 'flex',
@@ -33,32 +32,47 @@ const drawerStyle = (open) => {
   }
 }
 
-  const contentStyle = (open) => {
-    return {
-      display: 'flex',
-      flexDirection: 'column',
-      display: open ? 'flex' : 'none'
-    }
+const contentStyle = (open) => {
+  return {
+    paddingLeft: '1rem',
+    display: 'flex',
+    flexDirection: 'column',
+    display: open ? 'flex' : 'none',
+    marginRight: 'auto',
+    alignItems: 'flex-start'
   }
+}
 
-  const iconStyle = (open) => {
-    return {
-      borderRadius: '50%',
-      height: '24px',
-      width: '24px',
-      boxShadow: '0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24)',
-      display: 'flex', 
-      flexDirection: 'row', 
-      alignItems: 'center', 
-      justifyContent: 'center',
-      color: open ? 'white' : '#6B778C',
-      backgroundColor: open ? '#4C9AFF' : 'white',
-      ':hover': {
-        color: 'white',
-        backgroundColor: '#4C9AFF'
-      }
+const iconStyle = (open) => {
+  return {
+    borderRadius: '50%',
+    height: '24px',
+    width: '24px',
+    boxShadow: '0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24)',
+    display: 'flex', 
+    flexDirection: 'row', 
+    alignItems: 'center', 
+    justifyContent: 'center',
+    color: open ? 'white' : '#6B778C',
+    backgroundColor: open ? '#4C9AFF' : 'white',
+    ':hover': {
+      color: 'white',
+      backgroundColor: '#4C9AFF'
     }
   }
+}
+
+const pullTabStyle = {
+  marginTop: '24px', 
+  marginRight: '-22px', 
+  width: '44px', 
+  height: '40px', 
+  display: 'flex', 
+  flexDirection: 'row', 
+  alignItems: 'center', 
+  justifyContent: 'center', 
+  inset: '-8px -12px -8px -8px'
+}
 
 const SideMenu = () => {
   const [open, setOpen] = useState(false)
@@ -75,10 +89,10 @@ const SideMenu = () => {
       <Box sx={drawerStyle(open)} >
           <Box sx={contentStyle(open)}>
             <Header title={project.title}/>
-            <Sections project={project}/>
+            {/* <Sections project={project}/> */}
             <ProjectsList/>
           </Box>
-          <Box sx={{ marginTop: '24px', marginRight: '-22px', width: '44px', height: '40px', display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', inset: '-8px -12px -8px -8px'}}>
+          <Box sx={pullTabStyle}>
             <IconButton onClick={handleDrawer} sx={iconStyle(open)}>
               <AtlasIcon Svg={ open ? ChevronLeft : ChevronRight} />
             </IconButton>
