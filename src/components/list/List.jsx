@@ -37,8 +37,8 @@ const List = ({list}) => {
   return (
     <Box sx={listStyle}>
       <Box sx={headerStyle}>
-          <ListTitle list={listContent}/>
-          <DeleteListButton list={listContent}/>
+          <ListTitle list={list}/>
+          <DeleteListButton list={list}/>
       </Box>
 
       <Droppable droppableId={`${list.id}`}>

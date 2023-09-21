@@ -14,6 +14,7 @@ const DeleteListButton = ({list}) => {
 
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
+
   const handleDelete= async () => {
     await listService.remove(list.id)
   }
@@ -21,7 +22,8 @@ const DeleteListButton = ({list}) => {
   const Message = () => {
     return (
       <Typography sx={{display: 'flex', flexDirection: 'column'}} align={'center'}>
-        Delete&nbsp;<strong>{list.title}</strong>&nbsp;with its {list.issueOrder !== null && list.issueOrder.length} tasks?
+        {console.log(list)}
+        Delete&nbsp;<strong>{list.title}</strong>&nbsp;with its {list.issues !== [] && list.issues.length} tasks?
       </Typography>
     )
   }
@@ -37,7 +39,6 @@ const DeleteListButton = ({list}) => {
         Message={Message}
         handleDelete={handleDelete}
         />
-
     </Box>
   )
 }
