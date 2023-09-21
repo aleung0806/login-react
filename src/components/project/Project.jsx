@@ -33,7 +33,7 @@ const buttonStyle = {
 const projectStyle = {
   flex: 100,
   marginTop: '20px',
-  marginLeft: '15px',
+  marginLeft: '2rem',
 }
 
 const userSectionStyle = {

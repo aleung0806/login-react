@@ -7,7 +7,7 @@ import ProjectIcon from '../../icons/project-logo.svg'
 
 const Header = ({title}) => {
 return (
-  <Box sx={{paddingTop: '32px', display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', width: 'auto'}}>
+  <Box sx={{paddingTop: '32px', display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginRight: 0}}>
     <Box
       component="img"
       height="24px"
@@ -15,7 +15,7 @@ return (
       sx={{borderRadius: '3px', width: 'auto'}}
     />
     <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'left', justifyContent: 'center', marginLeft: '26px'}}>
-      <Typography variant='p2'>
+      <Typography variant='p2' sx={{color: '#42526E'}}>
         {title}
       </Typography>
       <Typography variant='p3'>

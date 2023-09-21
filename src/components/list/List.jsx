@@ -12,9 +12,9 @@ import {
 
 const listStyle = {
   display: 'inline-block',
-  minWidth: '275px',
+  minWidth: '18.5rem',
   height: '75vh',
-  padding: '10px',
+  padding: '0.75rem',
   borderRadius: '3px',
   verticalAlign: 'top',
   marginRight: '10px',

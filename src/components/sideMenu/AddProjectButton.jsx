@@ -43,7 +43,7 @@ return (
         submit={submit}
         buttonStyle={buttonStyle}
         ButtonIcon={ButtonIcon}
-        inputStyle={{}}
+        inputStyle={{width: '10rem', fontSize: '14px'}}
       />
 )
 }

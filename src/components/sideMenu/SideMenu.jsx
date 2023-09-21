@@ -38,7 +38,7 @@ const contentStyle = (open) => {
     display: 'flex',
     flexDirection: 'column',
     display: open ? 'flex' : 'none',
-    marginRight: 'auto',
+    width: '100%',
     alignItems: 'flex-start'
   }
 }
@@ -71,7 +71,7 @@ const pullTabStyle = {
   flexDirection: 'row', 
   alignItems: 'center', 
   justifyContent: 'center', 
-  inset: '-8px -12px -8px -8px'
+  inset: '-8px -12px -8px -8px',
 }
 
 const SideMenu = () => {

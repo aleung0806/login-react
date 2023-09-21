@@ -30,7 +30,7 @@ const ClickToAdd = ({submit, buttonStyle, ButtonIcon, inputStyle, inputProps}) =
 
   return (
     <ClickAwayListener onClickAway={clickAwayHandler}>
-    <Box style={{width: 'fit-content', height: 'fit-content'}}>
+    <Box style={{height: 'fit-content', marginRight: 'auto', width: 'auto'}}>
       <IconButton sx={buttonStyle} onClick={displayHandler} style={{display: displayForm ? 'none' : ''}}>
             <ButtonIcon/>
       </IconButton>
