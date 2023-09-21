@@ -21,7 +21,7 @@ import StarButton from './StarButton'
 import List from "../list/List"
 
 import { useParams } from 'react-router-dom'
-
+import dragDrop from '../../utils/dragDrop'
 import { useStore } from '../../store'
 
 const buttonStyle = {
@@ -59,9 +59,9 @@ const linkStyle = {
 
 const Project = ({project}) => {
   console.log('rendering project')
-  //const project = useStore(state => state.project)
+
   const onDragEnd = (result) => {
-    // dispatch(moveIssue(result, project))
+    dragDrop(result)
   }
 
   return (
