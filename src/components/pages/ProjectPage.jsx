@@ -37,7 +37,7 @@ const ProjectPage = () => {
   const verifySession = useStore(state => state.verifySession)
 
   const getProject = useStore(state => state.getProject)
-  const getAllProjects = useStore(state => state.getAllProjects)
+  const setDefaultProject = useStore(state => state.setDefaultProject)
 
   const [ sessionVerified, setSessionVerified ] = useState(false)
 
@@ -59,9 +59,12 @@ const ProjectPage = () => {
         navigate('/login')
       }
       if(user !== null){
-        if (user.projects !== [] && project === null){
+        if (user.projects.length > 0 && project === null){
           await getProject(user.projects[0].id)
-          console.log('resetting')
+        }
+        if (user.projects.length === 0){
+          console.log('setting')
+          await setDefaultProject()
         }
       }
       

@@ -2,48 +2,22 @@ import { create } from 'zustand'
 import { projectService, projectRoleService } from '../services/jira'
 
 const defaultProject = {
-  id: 1,
-  title: 'project 1 title',
-  lists: [
-    {
-      id: 1,
-      title: 'list 1',
-      projectId: 1
-
-    },
-    {
-      id: 2,
-      title: 'list 2',
-      projectId: 1,
-      issues: [
-        {
-
-        }
-      ]
-    },
-    {
-      id: 3,
-      title: 'list 3',
-      projectId: 1
-    }
-  ]
+  id: 'default',
+  title: 'example project',
+  lists: [],
+  users: []
 }
 
-const defaultProjects = [
-  {
-    id: 1,
-    title: 'project 1 title'
-  },
-  {
-    id: 2,
-    title: 'project 2 title'
-  }
-]
+
 
 export const jiraSlice = (set, get) => ({
   project: null,
   projects: [],
   projectRoles: [],
+  setDefaultProject: async () => {
+    set({project: defaultProject})
+
+  },
   getAllProjects: async () => {
     const projects = await projectService.getAll()
     set({projects: projects})

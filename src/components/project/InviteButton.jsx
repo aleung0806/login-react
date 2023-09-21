@@ -7,8 +7,8 @@ import {
   Input
  } from '@mui/material'
  import { useTheme } from '@mui/material/styles';
-
-
+import { useStore } from '../../store'
+import { projectRoleService } from '../../services/jira'
 import DeleteIcon from '@mui/icons-material/Delete'
 import { useState } from 'react'
 
@@ -33,15 +33,12 @@ const modalContentStyle = {
   boxShadow: 24,
   borderRadius: 1,
   padding: 2
-
 }
 
 const buttonBoxStyle = {
   display: 'flex',
   gap: 2
 }
-
-
 const modalDeleteButtonStyle = {
   color: 'primary.contrast',
   backgroundColor: 'secondary.main',
@@ -49,7 +46,6 @@ const modalDeleteButtonStyle = {
     {color: 'secondary.main', borderColor: 'secondary.main'}, 
   fontWeight: '600'
 }
-
 
 const iconStyle = (theme) => {
   return {
@@ -62,19 +58,32 @@ const buttonStyle = (theme) => {
     color: theme.palette.grays.light
   }
 }
+
 const AddUserButton = ({project}) => {
   const [open, setOpen] = useState(false)
   const theme = useTheme()
   const [email, setEmail] = useState('')
+  const [inviteError, setInviteError] = useState(false)
 
-  const handleOpen = () => setOpen(true)
+  const getAllUsers = useStore(state => state.getAllUsers)
+  const allUsers = useStore(state => state.allUsers)
+
+  const handleOpen = async () => {
+    await getAllUsers()
+    setOpen(true)
+  }
+
   const handleClose = () => setOpen(false)
 
-
-const inviteHandler = () => {
-  // dispatch(createRole({userId: 12, projectId: project.id, role: 'member'}))
-}
-
+  const inviteHandler = async () => {
+    console.log('inviting')
+    const invitedUser = allUsers.find(user => user.email === email)
+    if (invitedUser !== undefined){
+      await projectRoleService.create({userId: invitedUser.id, projectId: project.id, role: 'member'})
+      setOpen(false)
+    }
+    console.log('User with that email does not exist.')
+  }
 
 return (
   <Box>
