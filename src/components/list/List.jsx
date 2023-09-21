@@ -30,14 +30,15 @@ const headerStyle = {
 
 
 
-const List = ({listContent}) => {
-  const {issues, ...list } = listContent
+const List = ({list}) => {
+  console.log('list', list)
+  const {issues, ...listContent } = list
 
   return (
     <Box sx={listStyle}>
       <Box sx={headerStyle}>
-          <ListTitle list={list}/>
-          <DeleteListButton list={list}/>
+          <ListTitle list={listContent}/>
+          <DeleteListButton list={listContent}/>
       </Box>
 
       <Droppable droppableId={`${list.id}`}>

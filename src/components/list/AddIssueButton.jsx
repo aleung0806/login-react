@@ -27,8 +27,11 @@ const buttonStyle = {
 }
 
 const AddIssueButton = ({list}) => {
+
   const user = useStore (state => state.user)
+
   const submit = async (input) => {
+    console.log('list', list)
     const newIssue = await issueService.create({
       title: input, 
       projectId: list.projectId,
@@ -38,7 +41,8 @@ const AddIssueButton = ({list}) => {
       status: 'in progress',
       creatorId: user.id
     })
-    const newIssueOrder = [...list.issues, newIssue.id]
+    const issueIds = list.issues.map(issue => issue.id)
+    const newIssueOrder = [...issueIds, newIssue.id]
     await listService.update(list.id, {issueOrder: newIssueOrder})
   }
   const ButtonIcon = () => < AddRoundedIcon />

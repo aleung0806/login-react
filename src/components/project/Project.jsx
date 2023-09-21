@@ -92,7 +92,7 @@ const Project = ({project}) => {
       </Box>
     <Box sx={listAreaStyle}>
         <DragDropContext onDragEnd={onDragEnd} >
-            {project.lists !== null && project.lists.map((list) => <List listContent={list} key={list.id}/>)}
+            {project.lists !== null && project.lists.map((list) => <List list={list} key={list.id}/>)}
         </DragDropContext>
         <AddListButton project={project}/>
       </Box>
