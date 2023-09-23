@@ -7,7 +7,7 @@ import { useStore } from '../../../store'
 import { issueService } from '../../../services/jira'
 
 const inputStyle = {
-  font: '12px',
+
 }
 
 const DescriptionForm = ({issue}) => {
@@ -17,13 +17,17 @@ const DescriptionForm = ({issue}) => {
   }
 
   return (
-    <Box>
+    <Box sx={{width: '100%'}}>
       <Typography variant='darkestBold14'>Description</Typography>
       <ControlledForm 
         submit={submit} 
         defaultInput = {issue.description === null ? '' : issue.description}
         formStyle = {{}}
         inputStyle = {inputStyle}
+        inputProps = {{
+          placeHolder: 'Add a description',
+          font: '12px',
+        }}
       />
     </Box>
   )

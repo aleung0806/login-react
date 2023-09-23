@@ -15,6 +15,8 @@ export const jiraSlice = (set, get) => ({
   projects: [],
   projectRoles: [],
   issueSearch: '',
+  issueSort: '',
+  issueGroup: 'list',
 
   setDefaultProject: async () => {
     set({project: defaultProject})

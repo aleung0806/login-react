@@ -12,14 +12,15 @@ import {
 
 
 import TypeIcon from '../reusable/TypeIcon'
-import { useStore } from '../../store'
 
 
 import AtlasIcon from '../reusable/AtlasIcon'
 import {ReactComponent as Cross} from '@atlaskit/icon/svgs/cross.svg'
 import { useState } from 'react'
-
+import { useStore } from '../../store'
 import PriorityDropdown from './issueDetails/PriorityDropdown'
+import TypeDropdown from './issueDetails/TypeDropdown'
+
 import TitleForm from './issueDetails/TitleForm'
 import AssignedToDropdown from './issueDetails/AssignedToDropdown'
 import DescriptionForm from './issueDetails/DescriptionForm'
@@ -64,13 +65,14 @@ const contentStyle = {
 const headerStyle = {
   display: 'flex',
   flexDirection: 'row',
-  justifyContent: 'space-between'
+  justifyContent: 'space-between',
+  marginTop: '1rem'
 }
 
 const leftHeaderStyle = {
   display: 'flex',
   flexDirection: 'row',
-  alignItems: 'center',
+  alignItems: 'start',
 
 }
 
@@ -105,7 +107,10 @@ const footerStyle = {
 
 const IssueDetailsButton = ({issue, children}) => {
   const [showModal, setShowModal] = useState(false)
-
+  const project = useStore(state => state.project)
+  const list = useStore(state => {
+    return state.project.lists.find(list => list.id === issue.listId)
+  })
   const clickHandler = () => {
     setShowModal(true)
   }
@@ -123,7 +128,10 @@ return (
         <Box sx={contentStyle}>
             <Box sx={headerStyle}>
               <Box sx={leftHeaderStyle}>
-                <TypeIcon type={issue.type}/>
+                <Typography sx={{textTransform: 'none', fontSize: '14px', color: '#5E6C84'}}>
+                  {`${project.title} / ${list.title} / ${issue.title} `}
+                  </Typography>
+
               </Box>
               <IconButton sx={{closeButtonStyle}} onClick={closeHandler}>
                 <AtlasIcon Svg={Cross}></AtlasIcon>
@@ -139,6 +147,8 @@ return (
                 <Box sx={rightBodyStyle}>
                   <PriorityDropdown issue={issue}/>
                   <AssignedToDropdown issue={issue}/>
+                  <TypeDropdown issue={issue}/>
+
                 </Box>
             </Box>
             <Box sx={footerStyle}>
