@@ -12,7 +12,11 @@ const textFieldStyle = {
   height: '30px',
   padding: '10px',
   borderWidth: '3px',
-  fontSize: '14px'
+  fontSize: '14px',
+  borderWidth: '2px',
+  borderColor: '#DFE1E6',
+  borderRadius: '3px',
+  
 }
 
 const iconStyle = {
@@ -32,6 +36,12 @@ const SearchBar = () => {
   return (
     <Box>
         <TextField
+           sx={{
+            '.Mui-focused': {
+              width: '400px',
+              borderColor: '#4C9AFF'
+            }
+          }}
             InputProps={{
               style : textFieldStyle,
               startAdornment: (

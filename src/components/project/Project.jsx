@@ -24,6 +24,8 @@ import { useParams } from 'react-router-dom'
 import dragDrop from '../../utils/dragDrop'
 import { useStore } from '../../store'
 
+import { useState } from 'react'
+
 const buttonStyle = {
   height: '35px',
   width: '35px',
@@ -92,7 +94,7 @@ const Project = ({project}) => {
       </Box>
     <Box sx={listAreaStyle}>
         <DragDropContext onDragEnd={onDragEnd} >
-            {project.lists !== null && project.lists.map((list) => <List list={list} key={list.id}/>)}
+            {project.lists !== null && project.lists.map((list) => <List list={list} key={list.id} />)}
         </DragDropContext>
         <AddListButton project={project}/>
       </Box>

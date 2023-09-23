@@ -3,7 +3,7 @@ import DeleteListButton from './DeleteListButton'
 import AddIssueButton from './AddIssueButton'
 import ListTitle from './ListTitle'
 import Issue from '../issue/Issue'
-
+import { useState } from 'react'
 import {
   Box
 } from '@mui/material'
@@ -30,12 +30,26 @@ const headerStyle = {
 
 
 
-const List = ({list}) => {
+const List = ({list, search}) => {
   console.log('list', list)
   const {issues, ...listContent } = list
+  let searchMap = []
+  if( search !== ''){
+    console.log('hello')
+    searchMap = issues.map(issue => {
+      return issue.search(search)
+    })
+  }
+  const [displayButton, setDisplayButton] = useState(false)
 
+
+
+  const mouseOverHandler = () => {
+    console.log('handling')
+    
+  }
   return (
-    <Box sx={listStyle}>
+    <Box sx={listStyle} onMouseEnter={() => setDisplayButton(true)} onMouseLeave={() => setDisplayButton(false)}>
       <Box sx={headerStyle}>
           <ListTitle list={list}/>
           <DeleteListButton list={list}/>
@@ -46,13 +60,20 @@ const List = ({list}) => {
           return (
           <div {...provided.droppableProps} ref={provided.innerRef}>
             {issues.map((issue, index) => {
-              return <Issue key={issue.id} issue={issue} index={index} />
+              if (searchMap !== []){
+                if (searchMap[index] !== -1){
+                  return <Issue key={issue.id} issue={issue} index={index} />
+                }
+
+              }else {
+                return <Issue key={issue.id} issue={issue} index={index} />
+              }
             })}
             {provided.placeholder}
           </div>)
         }}
       </Droppable>
-      <AddIssueButton list={list}/>
+      <AddIssueButton list={list} displayButton={displayButton}/>
     </Box>
   )
 }

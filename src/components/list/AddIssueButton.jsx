@@ -6,8 +6,10 @@ import userEvent from '@testing-library/user-event'
 import { useState } from 'react'
 import {  ClickAwayListener } from '@mui/base'
 import { 
+  Typography,
   Input,
   IconButton,
+  Button,
   Box
 } from '@mui/material'
 
@@ -38,9 +40,12 @@ const inputStyle = {
 }
 
 const buttonStyle = {
-  width: '30px',
-  height: '30px',
+
   borderRadius: 1,
+  display: 'flex',
+  flexDirection: 'row',
+  width: '100%',
+  justifyContent: 'flex-start'
   // color: 'secondary.light',
   // "&:hover": {
   //   color: 'text.secondary',
@@ -51,7 +56,7 @@ const buttonStyle = {
   // },
 }
 
-const AddIssueButton = ({list}) => {
+const AddIssueButton = ({list, displayButton}) => {
   const user = useStore (state => state.user)
 
   const [type, setType] = useState('bug')
@@ -95,9 +100,15 @@ const AddIssueButton = ({list}) => {
   return (
     <ClickAwayListener onClickAway={clickAwayHandler}>
     <Box style={{height: 'fit-content', marginRight: 'auto', width: 'auto'}}>
-      <IconButton sx={buttonStyle} onClick={displayHandler} style={{display: displayForm ? 'none' : ''}}>
-            <ButtonIcon/>
-      </IconButton>
+      {console.log(displayButton)}
+      {!displayForm && displayButton &&
+      <Button sx={buttonStyle} onClick={displayHandler} >
+            <Box sx={{color: 'rgba(0, 0, 0, 0.54)', display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
+              <ButtonIcon sx={{color: 'red'}}/>
+            </Box>
+            <Typography sx={{marginLeft: '3px', textTransform: 'none', fontSize: '14px', fontWeight: '600', color: 'rgba(0, 0, 0, 0.54)'}}>Create Issue</Typography>
+      </Button>
+      }
       {displayForm && (
         <Box sx={textAreaStyle}>
           <Box component='form' onSubmit={submitHandler}>

@@ -129,7 +129,7 @@ return (
                 <AtlasIcon Svg={Cross}></AtlasIcon>
               </IconButton>
             </Box>
-
+            
             <Box sx={bodyStyle}>
                 <Box sx={leftBodyStyle}>
                   <TitleForm issue={issue} />

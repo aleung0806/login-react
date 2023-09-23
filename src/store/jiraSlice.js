@@ -33,4 +33,9 @@ export const jiraSlice = (set, get) => ({
     const projectRoles = await projectRoleService.getAll()
     set({projectRoles: projectRoles})
   },
+
+  setSearch: async () => {
+    const projectRoles = await projectRoleService.getAll()
+    set({projectRoles: projectRoles})
+  },
 })
