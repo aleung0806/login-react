@@ -78,7 +78,6 @@ const Issue = ({ issue, index }) => {
               <Box sx={footerStyle}>
                   <TypeIcon type={issue.type}/>
                   <Box sx={{display: 'flex', gap: 1}}>
-                  {console.log('issue', issue)}
                   {assignedTo === null
                     ? <Typography sx={buttonTextStyle}>{'not assigned'}</Typography>
                     : <Box>

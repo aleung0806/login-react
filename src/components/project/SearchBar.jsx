@@ -7,6 +7,7 @@ import {
 import AtlasIcon from '../reusable/AtlasIcon'
 import {ReactComponent as Search} from '@atlaskit/icon/svgs/search.svg'
 import { useState } from 'react'
+import { useStore } from '../../store'
 
 const inputStyle = {
   height: '2.5rem',
@@ -29,8 +30,16 @@ const SearchBar = ({project}) => {
   const [input, setInput] = useState('')
   const [focused, setFocused] = useState(false)
 
+  const setIssueSearch = useStore(state => state.setIssueSearch)
+
   const changeHandler = (e) => {
     setInput(e.target.value)
+    setIssueSearch(input)
+  }
+
+  const submitHandler = () => {
+    setIssueSearch(input)
+
   }
 
   return (
@@ -57,6 +66,7 @@ const SearchBar = ({project}) => {
             id="searchField"
             value={input}
             onChange={changeHandler}
+            onSubmit={submitHandler}
             
           >
       </TextField>

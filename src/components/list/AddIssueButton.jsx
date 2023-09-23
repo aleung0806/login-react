@@ -100,7 +100,6 @@ const AddIssueButton = ({list, displayButton}) => {
   return (
     <ClickAwayListener onClickAway={clickAwayHandler}>
     <Box style={{height: 'fit-content', marginRight: 'auto', width: 'auto'}}>
-      {console.log(displayButton)}
       {!displayForm && displayButton &&
       <Button sx={buttonStyle} onClick={displayHandler} >
             <Box sx={{color: 'rgba(0, 0, 0, 0.54)', display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>

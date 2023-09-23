@@ -14,6 +14,8 @@ export const jiraSlice = (set, get) => ({
   project: null,
   projects: [],
   projectRoles: [],
+  issueSearch: '',
+
   setDefaultProject: async () => {
     set({project: defaultProject})
 
@@ -25,7 +27,6 @@ export const jiraSlice = (set, get) => ({
 
   getProject: async (id) => {
     const project = await projectService.get(id)
-    console.log('setting project', id)
     set({project: project})
   },
 
@@ -34,8 +35,7 @@ export const jiraSlice = (set, get) => ({
     set({projectRoles: projectRoles})
   },
 
-  setSearch: async () => {
-    const projectRoles = await projectRoleService.getAll()
-    set({projectRoles: projectRoles})
+  setIssueSearch: async (issueSearch) => {
+    set({issueSearch: issueSearch})
   },
 })

@@ -7,6 +7,7 @@ import { useState } from 'react'
 import {
   Box
 } from '@mui/material'
+import { useStore } from '../../store'
 
 // import Issue from '../issue/Issue'
 
@@ -31,18 +32,18 @@ const headerStyle = {
 
 
 const List = ({list, search}) => {
-  console.log('list', list)
   const {issues, ...listContent } = list
-  let searchMap = []
-  if( search !== ''){
-    console.log('hello')
-    searchMap = issues.map(issue => {
-      return issue.search(search)
-    })
-  }
+
+  const searchMap = useStore(state => {
+    if (state.issueSearch !== []){
+      return issues.map(issue => {
+        return issue.title.search(state.issueSearch)
+      })
+    }
+    return null
+  })
+
   const [displayButton, setDisplayButton] = useState(false)
-
-
 
   const mouseOverHandler = () => {
     console.log('handling')
@@ -60,11 +61,10 @@ const List = ({list, search}) => {
           return (
           <div {...provided.droppableProps} ref={provided.innerRef}>
             {issues.map((issue, index) => {
-              if (searchMap !== []){
+              if (searchMap !== null){
                 if (searchMap[index] !== -1){
                   return <Issue key={issue.id} issue={issue} index={index} />
                 }
-
               }else {
                 return <Issue key={issue.id} issue={issue} index={index} />
               }
