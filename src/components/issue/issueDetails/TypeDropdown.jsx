@@ -14,7 +14,10 @@ import TypeIcon from '../../reusable/TypeIcon'
 
 const bodyStyle = {
   display: 'flex',
-  flexDirection: 'column'
+  flexDirection: 'row',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  marginRight: 'auto',
 }
 
 const buttonStyle = {
@@ -54,7 +57,7 @@ const TypeDropdown = ({ issue }) => {
   return (
     <Box>
       <Box sx={bodyStyle} >
-        <Typography variant='darkestBold14'>Type</Typography>
+        <Typography variant='darkestBold14' sx={{color: 'rgb(9, 30, 66)'}}>Type</Typography>
         <Button sx={buttonStyle} onClick={handleOpen}>
           <TypeIcon type={issue.type} />
         </Button >

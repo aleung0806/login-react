@@ -10,8 +10,6 @@ import {
   Button
 } from '@mui/material'
 
-import PriorityIcon from '../../reusable/PriorityIcon'
-
 const bodyStyle = {
   display: 'flex',
   flexDirection: 'column',
@@ -24,14 +22,13 @@ const bodyStyle = {
 
 const buttonStyle = {
   display: 'flex', 
-  gap: 1, 
-  justifyContent: 'space-between',
+  justifyContent: 'flex-end',
   
 }
 
 const buttonTextStyle = {
   fontSize: '12px', 
-  textTransform: 'none'
+  textTransform: 'uppercase'
 }
 
 const menuStyle = {}
@@ -45,34 +42,34 @@ const menuItemStyle = {
 }
 
 
-const selections = ['lowest', 'low', 'medium', 'high', 'highest'].reverse()
+const selections = ['to do', 'in progress', 'in review', 'done']
 
-const PriorityDropdown = ({ issue }) => {
+const StatusDropdown = () => {
   const [anchor, setAnchor] = useState(null)
 
   const handleOpen = (e) => { setAnchor(e.currentTarget) }
   const handleClose = () => { setAnchor(null) }
-
+  const issue = useStore(state => state.issue)
   const handleSelect = async (selection) => {
+    await issueService.update(issue.id, {status: selection})
     document.activeElement.blur()
-    await issueService.update(issue.id, {priority: selection})
+    handleClose()
+
   }
   return (
     <Box>
       <Box sx={bodyStyle} >
-        <Typography variant='darkestBold14' sx={{color: 'rgb(9, 30, 66)'}}>Priority</Typography>
+        <Typography variant='darkestBold14' sx={{color: 'rgb(9, 30, 66)'}}>Status</Typography>
         <Button sx={buttonStyle} onClick={handleOpen}>
-          <PriorityIcon priority={issue.priority} />
-          <Typography sx={buttonTextStyle}>{issue.priority}</Typography>
+          <Typography sx={buttonTextStyle}> {issue.status}</Typography>
 
         </Button >
       </Box>
       <Menu sx={menuStyle} id="basic-menu" anchorEl={anchor} open={Boolean(anchor)} onClose={handleClose} PaperProps={{ elevation: 1 }}>
         {selections
-          .map(selection => {
+          .map((selection) => {
             return (
               <MenuItem key={selection} sx={menuItemStyle} onClick={() => handleSelect(selection)}>
-                  <PriorityIcon priority={selection} />
                   <Typography sx={buttonTextStyle}>{selection}</Typography>
 
               </MenuItem>
@@ -85,4 +82,4 @@ const PriorityDropdown = ({ issue }) => {
   )
 }
 
-export default PriorityDropdown
+export default StatusDropdown

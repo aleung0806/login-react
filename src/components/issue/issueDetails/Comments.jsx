@@ -1,6 +1,7 @@
 import { 
   Typography,
   Box,
+  Button,
   Input,
  } from '@mui/material'
 import ControlledForm from '../../reusable/ControlledForm'
@@ -12,9 +13,9 @@ const inputStyle = {
 }
 import InitialsAvatar from '../../reusable/InitialsAvatar'
 const avatarStyle = {
-  height: '20px', 
-  width: '20px', 
-  fontSize: '10px',
+  height: '30px', 
+  width: '30px', 
+  fontSize: '12px',
   display: 'flex'
 
 }
@@ -32,7 +33,7 @@ const dateFormat = (dateString) => {
 
 const Comments = ({issue}) => {
   const user = useStore(state => state.user)
-
+  const [newestFirst, setNewestFirest] = useState(true)
   const [input, setInput] = useState('')
 
   const handleChange = (e) => { setInput(e.target.value) }
@@ -47,17 +48,21 @@ const Comments = ({issue}) => {
 
   return (
     <Box sx={{width: '100%'}}>
-      <Typography variant='darkestBold14'>Comments</Typography>
-      <Box component='form' sx={{marginBottom: '0.5rem'}} onSubmit={handleSubmit} onClick={handleClick}>
+      <Box sx={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', }}>
+        <Typography variant='darkestBold14' sx={{color: 'rgb(9, 30, 66)'}}>Comments</Typography>
+        <Button>
+          <Typography sx={{fontSize: '12px', textTransform: 'none'}}>Newest first</Typography>
+          </Button>
+      </Box>
+      <Box component='form' sx={{marginBottom: '1rem'}} onSubmit={handleSubmit} onClick={handleClick}>
         <Input
           variant='regular'
           sx={{
-            fontSize: '12px',
+            fontSize: '14px',
 
           }}
           inputProps={{
             placeholder: 'Add a comment',
-            fontSize: '12px',
           }}
           value={input}
           onChange={handleChange}
@@ -65,9 +70,9 @@ const Comments = ({issue}) => {
         
     </Box>
     {issue.comments.map(comment => {
-          console.log(comment)
+          console.log(issue.comments)
           return (
-          <Box id={comment.id} sx = {{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginBottom: '1.5rem'}}>
+          <Box key={comment.id} sx = {{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginBottom: '1.5rem'}}>
             <InitialsAvatar  sx={avatarStyle} user={user}/> 
             <Box sx = {{ display: 'flex', flexDirection: 'column', marginLeft: '1rem'}}>
               <Box sx={{ display: 'flex', flexDirection: 'row', marginBottom: '0.5rem' }}>

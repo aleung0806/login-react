@@ -16,7 +16,7 @@ const dropdownStyle = {
 
 
 const GroupByDropdown = () => {
-  const [value, setValue] = useState('')
+  const [value, setValue] = useState('list')
 
   const handleChange = (e) => {
     setValue(e.target.value)
@@ -33,10 +33,9 @@ const GroupByDropdown = () => {
           value={value}
           onChange={handleChange}
         >
-          <MenuItem sx={dropdownStyle} value={'type'}>List</MenuItem>
-          <MenuItem sx={dropdownStyle} value={'priority'}>Assigned to</MenuItem>
-          <MenuItem sx={dropdownStyle} value={'date assigned'}>Status</MenuItem>
-          <MenuItem sx={dropdownStyle} value={'dueDate'}>Type</MenuItem>
+          <MenuItem sx={dropdownStyle} value={'list'}>List</MenuItem>
+          <MenuItem sx={dropdownStyle} value={'status'}>Status</MenuItem>
+
 
         </Select>
       </FormControl>

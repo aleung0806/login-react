@@ -25,6 +25,8 @@ import TypeDropdown from './issueDetails/TypeDropdown'
 
 import TitleForm from './issueDetails/TitleForm'
 import AssignedToDropdown from './issueDetails/AssignedToDropdown'
+import StatusDropdown from './issueDetails/StatusDropdown'
+
 import DescriptionForm from './issueDetails/DescriptionForm'
 import Comments from './issueDetails/Comments'
 
@@ -39,11 +41,6 @@ const dateFormat = (dateString) => {
 
 }
 
-const closeButtonStyle = {
-  height: '20px',
-  width: '20px',
-  borderRadius: 0
-}
 
 const contentStyle = {
   display: 'flex',
@@ -53,15 +50,14 @@ const contentStyle = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 700,
+  width: 800,
   height: 600,
   bgcolor: 'background.paper',
   boxShadow: 24,
   borderRadius: 1,
 
-  padding: 3,
+  padding: 4,
   paddingTop: 1,
-  gap: 5,
 
 }
 
@@ -73,24 +69,19 @@ const headerStyle = {
   marginTop: '1rem'
 }
 
-const leftHeaderStyle = {
-  display: 'flex',
-  flexDirection: 'row',
-  alignItems: 'start',
 
-}
 
 const leftBodyStyle = {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'flex-start',
-  gap: 5
+  width: '400px',
+  gap: 5,
 }
 
 const rightBodyStyle = {
   display: 'flex',
   flexDirection: 'column',
-  alignItems: 'flex-start',
   gap: 3,
   width: '250px'
 }
@@ -99,6 +90,7 @@ const bodyStyle={
   display: 'flex', 
   flexDirection: 'row', 
   justifyContent: 'space-between',
+  marginTop: '1rem'
   
 }
 
@@ -142,13 +134,11 @@ return (
     <Modal open={showModal} onClose = {closeHandler}>
         <Box sx={contentStyle}>
             <Box sx={headerStyle}>
-              <Box sx={leftHeaderStyle}>
                 <Typography sx={{textTransform: 'none', fontSize: '14px', color: '#5E6C84'}}>
                   {`${project.title} / ${list.title} / ${issue.title} `}
-                  </Typography>
+                </Typography>
 
-              </Box>
-              <IconButton sx={{closeButtonStyle}} onClick={closeHandler}>
+              <IconButton sx={ { height: '30px', width: '30px', borderRadius: 0, padding: 0, }} onClick={closeHandler}>
                 <AtlasIcon style={{borderRadius: 0}}Svg={Cross}></AtlasIcon>
               </IconButton>
             </Box>
@@ -161,10 +151,10 @@ return (
 
                 </Box>
                 <Box sx={rightBodyStyle}>
-                  <PriorityDropdown issue={issue}/>
                   <AssignedToDropdown issue={issue}/>
                   <TypeDropdown issue={issue}/>
-
+                  <PriorityDropdown issue={issue}/>
+                  <StatusDropdown issue={issue}/>
                 </Box>
             </Box>
             <Box sx={footerStyle}>

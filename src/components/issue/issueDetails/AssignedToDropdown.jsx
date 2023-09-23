@@ -14,7 +14,11 @@ import InitialsAvatar from '../../reusable/InitialsAvatar'
 
 const bodyStyle = {
   display: 'flex',
-  flexDirection: 'column'
+  flexDirection: 'column',
+  flexDirection: 'row',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  marginRight: 'auto',
 }
 
 const buttonStyle = {
@@ -60,7 +64,7 @@ const AssignedToDropdown = ({ issue }) => {
   return (
     <Box>
       <Box sx={bodyStyle} >
-        <Typography variant='darkestBold14'>Assigned To</Typography>
+        <Typography variant='darkestBold14' sx={{color: 'rgb(9, 30, 66)'}}>Assigned To</Typography>
         <Button sx={buttonStyle} onClick={handleOpen}>
           {assignedTo === null
             ? <Typography sx={buttonTextStyle}>{'not assigned'}</Typography>

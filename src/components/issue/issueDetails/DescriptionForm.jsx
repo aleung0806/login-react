@@ -18,16 +18,14 @@ const DescriptionForm = ({issue}) => {
 
   return (
     <Box sx={{width: '100%'}}>
-      <Typography variant='darkestBold14'>Description</Typography>
+      <Typography variant='darkestBold14' sx={{color: 'rgb(9, 30, 66)'}}>Description</Typography>
       <ControlledForm 
         submit={submit} 
         defaultInput = {issue.description === null ? '' : issue.description}
         formStyle = {{}}
-        inputStyle = {inputStyle}
+        inputStyle = {{fontSize: '14px'}}
         inputProps = {{
-          placeholder: 'Add a description',
-          font: '12px',
-          
+          placeholder: 'Add a description',       
 
         }}
       />
