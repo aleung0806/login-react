@@ -18,12 +18,16 @@ import AtlasIcon from '../reusable/AtlasIcon'
 import {ReactComponent as Cross} from '@atlaskit/icon/svgs/cross.svg'
 import { useState } from 'react'
 import { useStore } from '../../store'
+import { issueService } from '../../services/jira'
+
 import PriorityDropdown from './issueDetails/PriorityDropdown'
 import TypeDropdown from './issueDetails/TypeDropdown'
 
 import TitleForm from './issueDetails/TitleForm'
 import AssignedToDropdown from './issueDetails/AssignedToDropdown'
 import DescriptionForm from './issueDetails/DescriptionForm'
+import Comments from './issueDetails/Comments'
+
 import d from 'date-and-time'
 import meridiem from 'date-and-time/plugin/meridiem'
 
@@ -38,7 +42,7 @@ const dateFormat = (dateString) => {
 const closeButtonStyle = {
   height: '20px',
   width: '20px',
-  borderRadius: 1
+  borderRadius: 0
 }
 
 const contentStyle = {
@@ -105,17 +109,27 @@ const footerStyle = {
   marginTop: 'auto'
 }
 
-const IssueDetailsButton = ({issue, children}) => {
+const IssueDetails = ({issueId, children}) => {
   const [showModal, setShowModal] = useState(false)
-  const project = useStore(state => state.project)
-  const list = useStore(state => {
-    return state.project.lists.find(list => list.id === issue.listId)
+  const [issue, list, project] = useStore(state => {
+    const issue = state.issue
+    let list = null
+    let project = null
+
+    if (issue !== null){
+      project = state.project
+      list = project.lists.find(list => list.id === issue.listId)
+    }
+    
+    return [issue, list, project]
   })
-  const clickHandler = () => {
+
+  const getIssue = useStore(state => state.getIssue)
+  const clickHandler = async () => {
+    await getIssue(issueId)
     setShowModal(true)
   }
   const closeHandler = () => {
-    console.log('close')
     setShowModal(false)
   }
 
@@ -124,6 +138,7 @@ return (
     <Box onClick={clickHandler} >
       {children}
     </Box>
+    {issue !== null && 
     <Modal open={showModal} onClose = {closeHandler}>
         <Box sx={contentStyle}>
             <Box sx={headerStyle}>
@@ -134,7 +149,7 @@ return (
 
               </Box>
               <IconButton sx={{closeButtonStyle}} onClick={closeHandler}>
-                <AtlasIcon Svg={Cross}></AtlasIcon>
+                <AtlasIcon style={{borderRadius: 0}}Svg={Cross}></AtlasIcon>
               </IconButton>
             </Box>
             
@@ -142,6 +157,7 @@ return (
                 <Box sx={leftBodyStyle}>
                   <TitleForm issue={issue} />
                   <DescriptionForm issue={issue}/>
+                  <Comments issue={issue}/>
 
                 </Box>
                 <Box sx={rightBodyStyle}>
@@ -157,8 +173,9 @@ return (
             </Box>
           </Box>
     </Modal>
+}
   </Box>
 )
   }
 
-export default IssueDetailsButton
+export default IssueDetails

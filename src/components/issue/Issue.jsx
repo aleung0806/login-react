@@ -7,7 +7,7 @@ import {
 } from '@mui/material'
 
 import IssueOptionsDropdown from './IssueOptionsDropdown'
-import IssueDetailsButton from './IssueDetailsButton'
+import IssueDetails from './IssueDetails'
 import IssueTitle from './IssueTitle'
 
 import TypeIcon from '../reusable/TypeIcon'
@@ -62,7 +62,7 @@ const Issue = ({ issue, index }) => {
     : users.find(user => user.id === issue.assigneeId)
 
   return (
-    <IssueDetailsButton issue={issue}>
+    <IssueDetails issueId={issue.id}>
         <Draggable  draggableId={`${issue.id}`} index={index} >
         {(provided, snapshot) => { return (
             <Box sx={issueStyle}
@@ -89,7 +89,7 @@ const Issue = ({ issue, index }) => {
             </Box>
         )}}
         </Draggable>
-    </IssueDetailsButton>
+    </IssueDetails>
   )
 };
 

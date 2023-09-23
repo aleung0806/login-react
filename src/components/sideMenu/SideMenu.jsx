@@ -75,7 +75,7 @@ const pullTabStyle = {
 }
 
 const SideMenu = () => {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(true)
   const project = useStore(state => state.project)
 
   const handleDrawer = () => {

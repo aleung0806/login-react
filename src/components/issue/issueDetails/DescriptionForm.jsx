@@ -25,8 +25,10 @@ const DescriptionForm = ({issue}) => {
         formStyle = {{}}
         inputStyle = {inputStyle}
         inputProps = {{
-          placeHolder: 'Add a description',
+          placeholder: 'Add a description',
           font: '12px',
+          
+
         }}
       />
     </Box>
