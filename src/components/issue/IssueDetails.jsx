@@ -22,6 +22,7 @@ import { issueService } from '../../services/jira'
 
 import PriorityDropdown from './issueDetails/PriorityDropdown'
 import TypeDropdown from './issueDetails/TypeDropdown'
+import DateDuePicker from './issueDetails/DateDuePicker'
 
 import TitleForm from './issueDetails/TitleForm'
 import AssignedToDropdown from './issueDetails/AssignedToDropdown'
@@ -155,6 +156,7 @@ return (
                   <TypeDropdown issue={issue}/>
                   <PriorityDropdown issue={issue}/>
                   <StatusDropdown issue={issue}/>
+                  <DateDuePicker issue={issue}/>
                 </Box>
             </Box>
             <Box sx={footerStyle}>

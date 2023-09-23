@@ -16,7 +16,7 @@ const dropdownStyle = {
 
 
 const SortByDropdown = () => {
-  const [value, setValue] = useState('')
+  const [value, setValue] = useState('list order')
 
   const handleChange = (e) => {
     setValue(e.target.value)
@@ -33,9 +33,10 @@ const SortByDropdown = () => {
           value={value}
           onChange={handleChange}
         >
+          <MenuItem sx={dropdownStyle} value={'list order'}>List order</MenuItem>
           <MenuItem sx={dropdownStyle} value={'priority'}>Priority</MenuItem>
+          <MenuItem sx={dropdownStyle} value={'date assigned'}>Date assigned</MenuItem>
           <MenuItem sx={dropdownStyle} value={'date assigned'}>Date due</MenuItem>
-          <MenuItem sx={dropdownStyle} value={'dueDate'}>Date assigned</MenuItem>
 
         </Select>
       </FormControl>

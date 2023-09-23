@@ -35,8 +35,8 @@ const GroupByDropdown = () => {
         >
           <MenuItem sx={dropdownStyle} value={'list'}>List</MenuItem>
           <MenuItem sx={dropdownStyle} value={'status'}>Status</MenuItem>
-
-
+          <MenuItem sx={dropdownStyle} value={'type'}>Type</MenuItem>
+          <MenuItem sx={dropdownStyle} value={'assignedTo'}>Assigned to</MenuItem>
         </Select>
       </FormControl>
     </Box>
