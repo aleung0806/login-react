@@ -61,9 +61,14 @@ const DateDuePicker = ({ issue }) => {
       <Box>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DatePicker
-          sx={{width: '150px'}}
+          sx={{width: '150px', fontSize: '12px'}}
           value={value}
           onChange={(newValue) => setValue(newValue)}
+          slotProps={{
+            textField: {
+              sx: {fontSize: '12px'}
+          }
+          }}
         />
           </LocalizationProvider>
     </Box>
