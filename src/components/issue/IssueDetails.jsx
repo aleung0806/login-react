@@ -51,7 +51,7 @@ const contentStyle = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 800,
+  width: 900,
   height: 600,
   bgcolor: 'background.paper',
   boxShadow: 24,
@@ -84,7 +84,7 @@ const rightBodyStyle = {
   display: 'flex',
   flexDirection: 'column',
   gap: 3,
-  width: '250px'
+  width: '350px'
 }
 
 const bodyStyle={
@@ -136,7 +136,7 @@ return (
         <Box sx={contentStyle}>
             <Box sx={headerStyle}>
                 <Typography sx={{textTransform: 'none', fontSize: '14px', color: '#5E6C84'}}>
-                  {`${project.title} / ${list.title} / ${issue.title} `}
+                  {`${project.title}  /  ${list.title}  /  ${issue.title} `}
                 </Typography>
 
               <IconButton sx={ { height: '30px', width: '30px', borderRadius: 0, padding: 0, }} onClick={closeHandler}>

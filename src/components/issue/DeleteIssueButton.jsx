@@ -13,6 +13,7 @@ const buttonStyle = {
   flexDirection: 'row', 
   justifyContent: 'flex-start',
 }
+
 const DeleteIssueButton = ({issue, closeMenu}) => {
   const [open, setOpen] = useState(false)
 

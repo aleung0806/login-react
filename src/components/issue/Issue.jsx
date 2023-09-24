@@ -57,15 +57,21 @@ const avatarStyle = {
 
 const Issue = ({ issue, index }) => {
   const users = useStore(state => state.project.users)
+  const [ mouseOver, setMouseOver ] = useState(false)
   const assignedTo = issue.assigneeId === null 
     ? null
     : users.find(user => user.id === issue.assigneeId)
 
   return (
     <IssueDetails issueId={issue.id}>
-        <Draggable  draggableId={`${issue.id}`} index={index} >
+        <Draggable  
+          draggableId={`${issue.id}`} 
+          index={index} 
+        >
         {(provided, snapshot) => { return (
             <Box sx={issueStyle}
+            onMouseEnter={() => { setMouseOver(true)}} 
+            onMouseLeave={() => {setMouseOver(false)}}
               ref={provided.innerRef}
               snapshot={snapshot}
               {...provided.draggableProps}
@@ -73,7 +79,7 @@ const Issue = ({ issue, index }) => {
             >
               <Box sx={headerStyle}>
                 <IssueTitle issue={issue}/>
-                <IssueOptionsDropdown issue={issue}/>
+                { mouseOver && <IssueOptionsDropdown issue={issue}/> } 
               </Box>
               <Box sx={footerStyle}>
                   <TypeIcon type={issue.type}/>

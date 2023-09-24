@@ -25,6 +25,7 @@ import dragDrop from '../../utils/dragDrop'
 import { useStore } from '../../store'
 
 import { useState } from 'react'
+import ProjectOptionsDropdown from "./ProjectOptionsDropdown";
 
 const buttonStyle = {
   height: '35px',
@@ -36,6 +37,7 @@ const projectStyle = {
   flex: 100,
   marginTop: '20px',
   marginLeft: '2rem',
+  marginRight: '2rem'
 }
 
 const userSectionStyle = {
@@ -70,7 +72,7 @@ const Project = ({project}) => {
     <Box sx={projectStyle}>
       <Box component='main' >
 
-      <Box sx={{display: 'flex', flexDirection: 'row', marginLeft: 0, alignItems: 'center'}}>
+      <Box sx={{display: 'flex', flexDirection: 'row', marginLeft: 0, alignItems: 'center', justifyContent: 'space-between', marginRight: '1rem'}}>
         <Box sx={{display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 1}}>
 
           <ProjectTitle project={project}/>
@@ -78,7 +80,7 @@ const Project = ({project}) => {
         </Box>
         <Box sx={{display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 1}}>
           <StarButton project={project}/>
-          <DeleteProjectButton />
+          <ProjectOptionsDropdown project={project}/>
         </Box>
       </Box>
       <Box sx={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>

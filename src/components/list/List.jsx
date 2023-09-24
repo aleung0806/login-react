@@ -1,6 +1,7 @@
 import { Droppable } from "react-beautiful-dnd"
 import DeleteListButton from './DeleteListButton'
 import AddIssueButton from './AddIssueButton'
+import ListOptionsDropdown from './ListOptionsDropdown'
 import ListTitle from './ListTitle'
 import Issue from '../issue/Issue'
 import { useState } from 'react'
@@ -43,17 +44,18 @@ const List = ({list, search}) => {
     return null
   })
 
-  const [displayButton, setDisplayButton] = useState(false)
+  const [mouseOver, setMouseOver] = useState(false)
 
   const mouseOverHandler = () => {
     console.log('handling')
     
   }
   return (
-    <Box sx={listStyle} onMouseEnter={() => setDisplayButton(true)} onMouseLeave={() => setDisplayButton(false)}>
+    <Box sx={listStyle} onMouseEnter={() => setMouseOver(true)} onMouseLeave={() => setMouseOver(false)}>
       <Box sx={headerStyle}>
           <ListTitle list={list}/>
-          <DeleteListButton list={list}/>
+          { mouseOver && <ListOptionsDropdown list={list}/> } 
+
       </Box>
 
       <Droppable droppableId={`${list.id}`}>
@@ -73,7 +75,7 @@ const List = ({list, search}) => {
           </div>)
         }}
       </Droppable>
-      <AddIssueButton list={list} displayButton={displayButton}/>
+      <AddIssueButton list={list} mouseOver={mouseOver}/>
     </Box>
   )
 }
