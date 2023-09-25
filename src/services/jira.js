@@ -26,6 +26,12 @@ const callGetIssue = async () => {
     await getIssue(issue.id)
   }
 }
+const callGetProject = async () => {
+  const { project, getProject } =  useStore.getState()
+  if (project !== null){
+    await getProject(project.id)
+  }
+}
 
 
 commentService.create =   async (element) => {
@@ -36,3 +42,12 @@ commentService.create =   async (element) => {
   }
   return null
 }
+issueService.update = async (id, element) => {
+  const response = await api.patch(`issue/${id}`, element)
+  if (response.status === 200){
+    callGetIssue()
+    callGetProject()
+
+    return response.data
+  }
+  return null  }

@@ -5,14 +5,24 @@ import StarBorderIcon from '@mui/icons-material/StarBorder'
 
 import ClickToAdd from '../reusable/ClickToAdd'
 import { useState } from 'react'
-
-
+import { userService } from '../../services'
+import { useStore } from '../../store'
 
 const StarButton = () => {
-  const [starred, setStarred] = useState(false)
+  const user = useStore(state => state.user)
+  const project = useStore(state => state.project)
 
-  const changeHandler = () => {
-    setStarred(!starred)
+  const [starred, setStarred] = useState((() => {
+
+    return user.favoriteProject !== project.id
+  })())
+  
+  const changeHandler = async () => {
+    console.log(project.id)
+    console.log({favoriteProject: project.id})
+    await userService.update(user.id, {favoriteProject: project.id})
+
+    //setStarred(!starred)
   }
 
   return (

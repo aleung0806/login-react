@@ -1,6 +1,13 @@
 import axios from 'axios'
 import addDebugInterceptor from './interceptors';
+import { useStore } from '../store'
 
+const callRefresh = async (user) => {
+  const refresh =  useStore.getState().refreshSession
+  if (user !== null){
+    await refresh()
+  }
+}
 
 const api  = axios.create({
   baseURL: "http://localhost:3001",
@@ -38,6 +45,7 @@ export const getAll = async () => {
 export const update = async (id, element) => {
   const response = await api.patch(`${path}/${id}`, element)
   if (response.status === 200){
+    callRefresh()
     return response.data
   }
   return null  

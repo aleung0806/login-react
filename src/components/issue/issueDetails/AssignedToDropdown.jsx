@@ -60,6 +60,7 @@ const AssignedToDropdown = ({ issue }) => {
   const handleSelect = async (selected) => {
     document.activeElement.blur()
     await issueService.update(issue.id, {assigneeId: selected})
+    handleClose()
   }
   return (
     <Box>

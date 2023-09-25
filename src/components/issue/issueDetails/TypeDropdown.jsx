@@ -37,6 +37,7 @@ const menuItemStyle = {
   display: 'flex',
   flexDirection: 'row',
   justifyContent: 'space-between',
+
   fontWeight: 'normal',
   gap: 1
 }
@@ -53,6 +54,8 @@ const TypeDropdown = ({ issue }) => {
   const handleSelect = async (selection) => {
     document.activeElement.blur()
     await issueService.update(issue.id, {type: selection})
+    handleClose()
+
   }
   return (
     <Box>
@@ -62,7 +65,10 @@ const TypeDropdown = ({ issue }) => {
           <TypeIcon type={issue.type} />
         </Button >
       </Box>
-      <Menu sx={menuStyle} id="basic-menu" anchorEl={anchor} open={Boolean(anchor)} onClose={handleClose} PaperProps={{ elevation: 1 }}>
+      <Menu sx={menuStyle} id="basic-menu" anchorEl={anchor} open={Boolean(anchor)} onClose={handleClose} PaperProps={{ elevation: 1 }}   
+        anchorOrigin={{vertical: 'bottom', horizontal: 'right'}}
+        transformOrigin={{vertical: 'top', horizontal: 'right'}}
+      >
         {selections
           .map(selection => {
             return (

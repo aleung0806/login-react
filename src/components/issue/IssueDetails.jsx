@@ -156,7 +156,7 @@ return (
                   <TypeDropdown issue={issue}/>
                   <PriorityDropdown issue={issue}/>
                   <StatusDropdown issue={issue}/>
-                  <DateDuePicker issue={issue}/>
+                  {/* <DateDuePicker issue={issue}/> */}
                 </Box>
             </Box>
             <Box sx={footerStyle}>
