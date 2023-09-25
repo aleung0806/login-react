@@ -38,8 +38,9 @@ const SortByDropdown = () => {
         >
           <MenuItem sx={dropdownStyle} value={'list order'}>List order</MenuItem>
           <MenuItem sx={dropdownStyle} value={'priority'}>Priority</MenuItem>
-          <MenuItem sx={dropdownStyle} value={'created at'}>Created at</MenuItem>
-          <MenuItem sx={dropdownStyle} value={'due at'}>Due at</MenuItem>
+          <MenuItem sx={dropdownStyle} value={'created at'}>Date created</MenuItem>
+          <MenuItem sx={dropdownStyle} value={'created at'}>Date updated</MenuItem>
+          <MenuItem sx={dropdownStyle} value={'date due'}>Date due</MenuItem>
 
         </Select>
       </FormControl>

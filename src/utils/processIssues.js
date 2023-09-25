@@ -34,9 +34,9 @@ export const sortIssues = (sort, issues) => {
       return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
     })
   }
-  else if (sort === 'due at'){
+  else if (sort === 'date due'){
     sorted.sort((a, b) => {
-      return new Date(a.dueAt).getTime() - new Date(b.dueAt).getTime()
+      return new Date(a.dateDue).getTime() - new Date(b.dateDue).getTime()
     })
   }
   return sorted

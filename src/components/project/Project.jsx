@@ -64,8 +64,8 @@ const linkStyle = {
 const Project = ({project}) => {
   console.log('rendering project')
 
-  const onDragEnd = (result) => {
-    dragDrop(result)
+  const onDragEnd = async (result) => {
+    await dragDrop(result)
   }
 
   return (

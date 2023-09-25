@@ -56,7 +56,7 @@ const buttonStyle = {
   // },
 }
 
-const AddIssueButton = ({list, displayButton}) => {
+const AddIssueButton = ({list}) => {
   const user = useStore (state => state.user)
 
   const [type, setType] = useState('bug')
@@ -86,6 +86,7 @@ const AddIssueButton = ({list, displayButton}) => {
       title: input, 
       projectId: list.projectId,
       listId: list.id,
+      listIndex: list.length,
       type: type,
       priority: 'medium',
       status: 'in progress',
@@ -100,7 +101,7 @@ const AddIssueButton = ({list, displayButton}) => {
   return (
     <ClickAwayListener onClickAway={clickAwayHandler}>
     <Box style={{height: 'fit-content', marginRight: 'auto', width: 'auto'}}>
-      {!displayForm && displayButton &&
+      {!displayForm &&
       <Button sx={buttonStyle} onClick={displayHandler} >
             <Box sx={{color: 'rgba(0, 0, 0, 0.54)', display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
               <ButtonIcon sx={{color: 'red'}}/>

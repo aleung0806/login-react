@@ -25,7 +25,7 @@ const iconStyle  = (sx) => {
     ...sx,
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
 }
 }
 

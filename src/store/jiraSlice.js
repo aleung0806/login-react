@@ -27,6 +27,9 @@ export const jiraSlice = (set, get) => ({
     set({project: defaultProject})
 
   },
+  setProject: async (project) => {
+    set({project: project})
+  },
   getAllProjects: async () => {
     const projects = await projectService.getAll()
     set({projects: projects})

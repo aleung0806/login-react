@@ -11,6 +11,8 @@ import IssueDetails from './IssueDetails'
 import IssueTitle from './IssueTitle'
 
 import TypeIcon from '../reusable/TypeIcon'
+import PriorityIcon from '../reusable/PriorityIcon'
+
 import InitialsAvatar from '../reusable/InitialsAvatar'
 import { useStore } from '../../store'
 
@@ -24,12 +26,28 @@ const headerStyle = {
 }
 
 const footerStyle = {
-  'width': '100%',
-  'display': 'flex',
-  'flexDirection': 'row',
-  'alignItems': 'center',
-  'justifyContent': 'space-between'
+  width: '100%',
+  display: 'flex',
+  flexDirection: 'row',
+  alignItems: 'center',
+  justifyContent: 'space-between'
 }
+
+const leftFooterStyle = {
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+}
+
+const rightFooterStyle = {
+  width: '100%',
+  display: 'flex',
+  flexDirection: 'row',
+  alignItems: 'center',
+  justifyContent: 'flex-end'
+}
+
 
 const issueStyle = {
   flexDirection: 'column',
@@ -82,8 +100,11 @@ const Issue = ({ issue, index }) => {
                 { mouseOver && <IssueOptionsDropdown issue={issue}/> } 
               </Box>
               <Box sx={footerStyle}>
-                  <TypeIcon type={issue.type}/>
-                  <Box sx={{display: 'flex', gap: 1}}>
+                  <Box sx={leftFooterStyle}>
+                    {/* <TypeIcon type={issue.type}/> */}
+                    <PriorityIcon priority={issue.priority}/>
+                  </Box>
+                  <Box sx={rightFooterStyle}>
                   {assignedTo === null
                     ? <Typography sx={buttonTextStyle}>{'not assigned'}</Typography>
                     : <Box>

@@ -37,7 +37,7 @@ const headerStyle = {
 const List = ({list, search}) => {
   const {issues, ...listContent } = list
   
-  const [mouseOver, setMouseOver] = useState(false)
+  const [mouseOver, setMouseOver] = useState()
 
 
   return (
@@ -59,7 +59,9 @@ const List = ({list, search}) => {
           </div>)
         }}
       </Droppable>
-      <AddIssueButton list={list} mouseOver={mouseOver}/>
+      { mouseOver &&
+        <AddIssueButton list={list} mouseOver={mouseOver}/>
+      }
     </Box>
   )
 }
