@@ -6,15 +6,24 @@ export const searchIssues = (search, issues) => {
   const searchMap = issues.map(issue => {
     return issue.title.search(search)
   })
-  
+
   const searchedIssues = []
   issues.forEach((issue, index) => {
     if(searchMap[index] !== -1){
       return searchedIssues.push(issue)
     }
   })
-  console.log('searched', searchedIssues)
   return searchedIssues
+}
+
+export const applyUserFilter = (userFilter, issues) => {
+  console.log(userFilter)
+  const filteredIssues = issues.filter((issue) => {
+    return userFilter[issue.assigneeId]
+  })
+  console.log(filteredIssues)
+  return filteredIssues
+
 }
 
 const values =  {'lowest': 1, 'low': 2, 'medium': 3, 'high': 4, 'highest': 5}

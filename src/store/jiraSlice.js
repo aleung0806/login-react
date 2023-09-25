@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 import { issueService, projectService, projectRoleService } from '../services/jira'
-import { sortIssues, searchIssues} from '../utils/processIssues'
+import { applyUserFilter, sortIssues, searchIssues} from '../utils/processIssues'
 
 const defaultProject = {
   id: 'default',
@@ -12,6 +12,7 @@ const defaultProject = {
 
 
 export const jiraSlice = (set, get) => ({
+  unfilteredProject: null,
   project: null,
   projects: [],
   projectRoles: [],
@@ -20,15 +21,18 @@ export const jiraSlice = (set, get) => ({
   search: '',
   sort: 'list order',
   group: 'none',
-  processedProject: null,
+  userFilter: null,
 
 
   setDefaultProject: async () => {
-    set({project: defaultProject})
+    //set({project: defaultProject})
 
   },
   setProject: async (project) => {
+
     set({project: project})
+    set({unfilteredProject: project})
+
   },
   getAllProjects: async () => {
     const projects = await projectService.getAll()
@@ -38,6 +42,8 @@ export const jiraSlice = (set, get) => ({
   getProject: async (id) => {
     const project = await projectService.get(id)
     set({project: project})
+    set({unfilteredProject: project})
+
   },
 
   getAllProjectRoles: async () => {
@@ -52,11 +58,10 @@ export const jiraSlice = (set, get) => ({
 
   setSearch: async (search) => {
     set({search: search})
-    const project = get().project
-    console.log('search', search)
+    const project = get().unfilteredProject
+
     if (search === ''){
-      const fetchedProject = await projectService.get(project.id)
-      set({project: fetchedProject})
+      set({project: project})
     }else{
       const searchedLists = project.lists.map(list => {
         const searchedIssues = searchIssues(search, list.issues)
@@ -72,13 +77,33 @@ export const jiraSlice = (set, get) => ({
     }
   },
 
+  setUserFilter: async (userFilter) => {
+    set({userFilter: userFilter})
+    const project = get().unfilteredProject
+
+    if (Object.values(userFilter).findIndex(user => user) === -1){
+      return set({project: project})
+    }
+    console.log(project)
+    const filteredLists= project.lists.map(list => {
+      const filteredIssues = applyUserFilter(userFilter, list.issues)
+      return {
+        ...list,
+        issues: filteredIssues,
+      }
+    })
+
+    set({project: {
+      ...project, 
+      lists: filteredLists
+    }})
+  },
   setSort: async (sort) => {
     set({sort: sort})
-    const project = get().project
+    const project = get().unfilteredProject
 
     if (sort === 'list order'){
-      const fetchedProject = await projectService.get(project.id)
-      set({project: fetchedProject})
+      set({project: project})
     
     }else{
       const sortedLists = project.lists.map(list => {
