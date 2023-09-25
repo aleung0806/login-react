@@ -10,6 +10,8 @@ import {
 } from '@mui/material'
 import { useStore } from '../../store'
 
+import { processIssues } from '../../utils/processIssues'
+
 // import Issue from '../issue/Issue'
 
 const listStyle = {
@@ -34,22 +36,10 @@ const headerStyle = {
 
 const List = ({list, search}) => {
   const {issues, ...listContent } = list
-
-  const searchMap = useStore(state => {
-    if (state.issueSearch !== []){
-      return issues.map(issue => {
-        return issue.title.search(state.issueSearch)
-      })
-    }
-    return null
-  })
-
+  
   const [mouseOver, setMouseOver] = useState(false)
 
-  const mouseOverHandler = () => {
-    console.log('handling')
-    
-  }
+
   return (
     <Box sx={listStyle} onMouseEnter={() => setMouseOver(true)} onMouseLeave={() => setMouseOver(false)}>
       <Box sx={headerStyle}>
@@ -63,13 +53,7 @@ const List = ({list, search}) => {
           return (
           <div {...provided.droppableProps} ref={provided.innerRef}>
             {issues.map((issue, index) => {
-              if (searchMap !== null){
-                if (searchMap[index] !== -1){
-                  return <Issue key={issue.id} issue={issue} index={index} />
-                }
-              }else {
                 return <Issue key={issue.id} issue={issue} index={index} />
-              }
             })}
             {provided.placeholder}
           </div>)

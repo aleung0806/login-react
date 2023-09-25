@@ -1,5 +1,6 @@
 import { create } from 'zustand'
 import { issueService, projectService, projectRoleService } from '../services/jira'
+import { sortIssues, searchIssues} from '../utils/processIssues'
 
 const defaultProject = {
   id: 'default',
@@ -15,9 +16,12 @@ export const jiraSlice = (set, get) => ({
   projects: [],
   projectRoles: [],
   issue: null,
-  issueSearch: '',
-  issueSort: '',
-  issueGroup: 'list',
+
+  search: '',
+  sort: 'list order',
+  group: 'none',
+  processedProject: null,
+
 
   setDefaultProject: async () => {
     set({project: defaultProject})
@@ -38,12 +42,37 @@ export const jiraSlice = (set, get) => ({
     set({projectRoles: projectRoles})
   },
 
-  setIssueSearch: async (issueSearch) => {
-    set({issueSearch: issueSearch})
-  },
-  
   getIssue: async (id) => {
     const issue = await issueService.get(id)
     set({issue: issue})
+  },
+
+  setSearch: async (search) => {
+    set({search: search})
+  },
+
+  setSort: async (sort) => {
+    console.log('setSort')
+    set({sort: sort})
+    const project = get().project
+
+    if (sort === 'list order'){
+      const fetchedProject = await projectService.get(project.id)
+      set({project: fetchedProject})
+    
+    }else{
+      const sortedLists = project.lists.map(list => {
+        const sortedIssues = sortIssues(sort, list.issues)
+        return {
+          ...list,
+          issues: sortedIssues,
+        }
+      })
+
+      set({project: {
+        ...project, 
+        lists: sortedLists
+      }})
+    }
   },
 })
