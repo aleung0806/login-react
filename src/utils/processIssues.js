@@ -2,17 +2,15 @@
 import { useStore } from '../store'
 
 export const searchIssues = (search, issues) => {
-  if (search === ''){
-    return
-  }
 
   const searchMap = issues.map(issue => {
     return issue.title.search(search)
   })
-
-  const searchedIssues = issues.map((issue, index) => {
+  
+  const searchedIssues = []
+  issues.forEach((issue, index) => {
     if(searchMap[index] !== -1){
-      return issue
+      return searchedIssues.push(issue)
     }
   })
   console.log('searched', searchedIssues)

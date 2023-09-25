@@ -30,15 +30,15 @@ const SearchBar = ({project}) => {
   const [input, setInput] = useState('')
   const [focused, setFocused] = useState(false)
 
-  const setsearch = useStore(state => state.setsearch)
+  const setSearch = useStore(state => state.setSearch)
 
   const changeHandler = (e) => {
     setInput(e.target.value)
-    setsearch(input)
+    setSearch(e.target.value)
   }
 
   const submitHandler = () => {
-    setsearch(input)
+    setSearch(input)
 
   }
 

@@ -52,10 +52,27 @@ export const jiraSlice = (set, get) => ({
 
   setSearch: async (search) => {
     set({search: search})
+    const project = get().project
+    console.log('search', search)
+    if (search === ''){
+      const fetchedProject = await projectService.get(project.id)
+      set({project: fetchedProject})
+    }else{
+      const searchedLists = project.lists.map(list => {
+        const searchedIssues = searchIssues(search, list.issues)
+        return {
+          ...list,
+          issues: searchedIssues,
+        }
+      })
+      set({project: {
+        ...project, 
+        lists: searchedLists
+      }})
+    }
   },
 
   setSort: async (sort) => {
-    console.log('setSort')
     set({sort: sort})
     const project = get().project
 
