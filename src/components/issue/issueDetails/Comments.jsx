@@ -31,14 +31,17 @@ const dateFormat = (dateString) => {
 
 }
 
-const Comments = ({issue}) => {
+const Comments = () => {
+  const issue = useStore(state => state.issue)
   const user = useStore(state => state.user)
-  const [newestFirst, setNewestFirest] = useState(true)
+  const [ascending, setAscending] = useState(true)
   const [input, setInput] = useState('')
-
   const handleChange = (e) => { setInput(e.target.value) }
   const handleClick = (e) => { e.stopPropagation() }
-
+  const handleSortClick = () => {
+    console.log(ascending)
+    setAscending(!ascending)
+  }
   const handleSubmit = async (e) => {
     e.preventDefault()
     document.activeElement.blur()    
@@ -50,8 +53,8 @@ const Comments = ({issue}) => {
     <Box sx={{width: '100%'}}>
       <Box sx={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', }}>
         <Typography variant='darkestBold14' sx={{color: 'rgb(9, 30, 66)'}}>Comments</Typography>
-        <Button>
-          <Typography sx={{fontSize: '12px', textTransform: 'none'}}>Newest first</Typography>
+        <Button onClick={handleSortClick}>
+          <Typography sx={{fontSize: '12px', textTransform: 'none'}}>{ascending ? 'Newest first' : 'Oldest first'}</Typography>
           </Button>
       </Box>
       <Box component='form' sx={{marginBottom: '1rem'}} onSubmit={handleSubmit} onClick={handleClick}>
@@ -69,8 +72,8 @@ const Comments = ({issue}) => {
         />
         
     </Box>
-    {issue.comments.map(comment => {
-          console.log(issue.comments)
+    {ascending 
+      ? issue.comments.toReversed().map(comment => {
           return (
           <Box key={comment.id} sx = {{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginBottom: '1.5rem'}}>
             <InitialsAvatar  sx={avatarStyle} user={user}/> 
@@ -82,7 +85,21 @@ const Comments = ({issue}) => {
               <Typography sx={{fontSize: '12px'}}>{comment.text}</Typography>
             </Box>
           </Box>)
-        })}
+        })
+      : issue.comments.map(comment => {
+        return (
+        <Box key={comment.id} sx = {{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginBottom: '1.5rem'}}>
+          <InitialsAvatar  sx={avatarStyle} user={user}/> 
+          <Box sx = {{ display: 'flex', flexDirection: 'column', marginLeft: '1rem'}}>
+            <Box sx={{ display: 'flex', flexDirection: 'row', marginBottom: '0.5rem' }}>
+              <Typography sx={{fontSize: '12px'}}>{`${user.username} `}</Typography>
+              <Typography sx={{marginLeft: '0.5rem', fontSize: '12px', color: '#7A869A'}}>{` at ${dateFormat(comment.createdAt)} `}</Typography>
+            </Box>
+            <Typography sx={{fontSize: '12px'}}>{comment.text}</Typography>
+          </Box>
+        </Box>)
+      })
+        }
     </Box>
   )
 }

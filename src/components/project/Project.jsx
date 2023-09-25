@@ -4,7 +4,8 @@ import { DragDropContext } from "react-beautiful-dnd";
 import { 
   Typography,
   IconButton,
-  Box 
+  Box,
+  Button
 } from '@mui/material'
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz'
 
@@ -23,6 +24,8 @@ import List from "../list/List"
 import { useParams } from 'react-router-dom'
 import dragDrop from '../../utils/dragDrop'
 import { useStore } from '../../store'
+import SortIcon from '@mui/icons-material/Sort';
+
 
 import { useState } from 'react'
 import ProjectOptionsDropdown from "./ProjectOptionsDropdown";
@@ -63,7 +66,7 @@ const linkStyle = {
 
 const Project = ({project}) => {
   console.log('rendering project')
-
+  const [ascending, setAscending] = useState(true)
   const onDragEnd = async (result) => {
     await dragDrop(result)
   }
@@ -89,14 +92,17 @@ const Project = ({project}) => {
             <UserIcons project={project}/>
             <InviteButton project={project}/>
         </Box>
-        <Box sx={{display: 'flex', flexDirection: 'row'}}>
-          <GroupByDropdown project={project}/>
+        <Box sx={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
+        <IconButton sx={{marginRight: '1rem', borderRadius: 1, }} onClick={() => setAscending(!ascending)}>
+            {ascending ? <SortIcon/> : <SortIcon sx={{transform: 'scaleY(-1)'}}/>}
+          </IconButton>
           <SortByDropdown project={project}/>
+
         </Box>
       </Box>
     <Box sx={listAreaStyle}>
         <DragDropContext onDragEnd={onDragEnd} >
-            {project.lists !== null && project.lists.map((list) => <List list={list} key={list.id} />)}
+            {project.lists !== null && project.lists.map((list) => <List list={list} key={list.id} ascending={ascending}/>)}
         </DragDropContext>
         <AddListButton project={project}/>
       </Box>

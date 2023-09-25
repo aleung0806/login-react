@@ -34,7 +34,7 @@ const headerStyle = {
 
 
 
-const List = ({list, search}) => {
+const List = ({list, search, ascending}) => {
   const {issues, ...listContent } = list
   
   const [mouseOver, setMouseOver] = useState()
@@ -52,9 +52,15 @@ const List = ({list, search}) => {
         {(provided) => {
           return (
           <div {...provided.droppableProps} ref={provided.innerRef}>
-            {issues.map((issue, index) => {
+            {
+              ascending
+              ? issues.map((issue, index) => {
                 return <Issue key={issue.id} issue={issue} index={index} />
-            })}
+              })
+              : issues.toReversed().map((issue, index) => {
+                return <Issue key={issue.id} issue={issue} index={index} />
+              })
+            }
             {provided.placeholder}
           </div>)
         }}

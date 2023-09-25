@@ -27,7 +27,7 @@ const ProjectsList = () => {
         return (
           <Button sx={{justifyContent: 'space-between', alignItems: 'center', height: '3rem'}} key={project.id} onClick={() => getProject(project.id)} >
             
-            <Typography sx={{textTransform: 'none', fontSize: '14px'}}>{project.title}</Typography>
+            <Typography sx={{textTransform: 'none', fontSize: '14px', textAlign: 'start'}}>{project.title}</Typography>
             <Typography sx={{textTransform: 'none', fontSize: '12px'}}>{project.role}</Typography>
 
           </Button>

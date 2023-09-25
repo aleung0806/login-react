@@ -15,7 +15,8 @@ import { useStore } from '../../store'
 const buttonStyle = {
   width: '30px',
   height: '30px',
-  borderRadius: 1
+  borderRadius: 1,
+  marginTop: '1rem'
 }
 
 const AddProjectButton = () => {
